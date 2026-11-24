@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    font-family: 'ByteBounce', monospace;
+    font-size: 19px;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: unset;
+    font-smooth: never;
+    text-rendering: optimizeSpeed;
+    @apply bg-[#12110d] text-[#F0E5DB];
+    background-color: #12110d;
+    background-image: 
+      radial-gradient(ellipse at 50% 0%, rgba(252, 117, 180, 0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(71, 67, 41, 0.2) 0%, transparent 50%),
+      radial-gradient(ellipse at 20% 80%, rgba(252, 117, 180, 0.04) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Medodica', 'ByteBounce', monospace;
+    letter-spacing: 0.04em;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: unset;
+  }
+
+  button, input, textarea, select {
+    font-family: 'ByteBounce', monospace;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: unset;
+  }
+}
+
+/* Custom Typography & Utility Classes */
+.font-pixel {
+  font-family: 'ByteBounce', monospace;
+  letter-spacing: 0.04em;
+}
+
+.font-display {
+  font-family: 'Medodica', monospace;
+  letter-spacing: 0.03em;
+}
+
+/* Pixel-Perfect Glass Card with Cyber-Border */
+.editorial-card {
+  background: rgba(30, 28, 21, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 2px solid rgba(240, 229, 219, 0.12);
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(240, 229, 219, 0.15);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-card:hover {
+  border-color: rgba(252, 117, 180, 0.55);
+  box-shadow: 6px 6px 0px 0px rgba(252, 117, 180, 0.25), 0 0 0 2px rgba(252, 117, 180, 0.35);
+}
+
+/* Pixel Shadow Primitives */
+.pixel-shadow {
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.7);
+}
+
+.pixel-shadow-pink {
+  box-shadow: 4px 4px 0px 0px rgba(252, 117, 180, 0.45);
+}
+
+.pixel-shadow-cyan {
+  box-shadow: 4px 4px 0px 0px rgba(252, 117, 180, 0.45);
+}
+
+/* Holo Gradient Overlay */
+.holo-shimmer {
+  background: linear-gradient(
+    135deg,
+    rgba(240, 229, 219, 0) 0%,
+    rgba(252, 117, 180, 0.15) 25%,
+    rgba(71, 67, 41, 0.2) 50%,
+    rgba(252, 117, 180, 0.15) 75%,
+    rgba(240, 229, 219, 0) 100%
+  );
+  background-size: 200% 200%;
+}
+
+/* Text Gradients */
+.text-gradient-cyan, .text-gradient-pink {
+  background: linear-gradient(135deg, #F0E5DB 15%, #FC75B4 70%, #ffa3d1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-violet, .text-gradient-olive {
+  background: linear-gradient(135deg, #F0E5DB 20%, #c9be83 70%, #756f45 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-amber {
+  background: linear-gradient(135deg, #F0E5DB 20%, #ffa3d1 70%, #FC75B4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Pixel Border Utility */
+.pixel-corners {
+  clip-path: polygon(
+    0 4px, 4px 4px, 4px 0,
+    calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
+    100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%,
+    4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
+  );
+}
+
+/* Custom Scrollbar in Pixel Aesthetic */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0e0d0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #2b271d;
+  border: 2px solid #0e0d0a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FC75B4;
+}
+
+/* Smooth custom range slider */
+input[type=range] {
+  accent-color: #FC75B4;
+}
