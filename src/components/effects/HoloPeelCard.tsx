@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, memo } from 'react';
 import { Project } from '../../types';
 import { ThinkingOrb } from './ThinkingOrb';
 import { Eye } from 'lucide-react';
@@ -10,44 +10,55 @@ interface HoloPeelCardProps {
   onPeelStateChange?: (isPeeling: boolean) => void;
 }
 
-export const HoloPeelCard: React.FC<HoloPeelCardProps> = ({
+const HoloPeelCardComponent: React.FC<HoloPeelCardProps> = ({
   project,
   isActive,
   onPeelComplete,
   onPeelStateChange,
 }) => {
   const cardRef = useRef<HTMLDivElement | null>(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const [pointerPos, setPointerPos] = useState({ x: 50, y: 50 });
   const [isHovered, setIsHovered] = useState(false);
   const [peelProgress, setPeelProgress] = useState(0); // 0 to 1
   const [isPeeling, setIsPeeling] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const dragStartRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
+  // 10% micro-tilt (1.0 degree max) using direct CSS custom properties for 120fps zero-render mousemove
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current || isPeeling) return;
-    const rect = cardRef.current.getBoundingClientRect();
+    const card = cardRef.current;
+    if (!card || isPeeling) return;
+    const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotX = ((centerY - y) / centerY) * 10;
-    const rotY = ((x - centerX) / centerX) * 10;
-    setTilt({ x: rotX, y: rotY });
-    setPointerPos({
-      x: Math.round((x / rect.width) * 100),
-      y: Math.round((y / rect.height) * 100),
-    });
+    // Reduced to 10% of previous 10 degrees -> 1.0 degree max micro-tilt
+    const rotX = ((centerY - y) / centerY) * 1.0;
+    const rotY = ((x - centerX) / centerX) * 1.0;
+    const px = Math.round((x / rect.width) * 100);
+    const py = Math.round((y / rect.height) * 100);
+    const holoAngle = Math.round((rotY * 14 + rotX * 10 + 135) % 360);
+
+    card.style.setProperty('--card-rot-x', `${rotX.toFixed(2)}deg`);
+    card.style.setProperty('--card-rot-y', `${rotY.toFixed(2)}deg`);
+    card.style.setProperty('--pointer-x', `${px}%`);
+    card.style.setProperty('--pointer-y', `${py}%`);
+    card.style.setProperty('--holo-angle', `${holoAngle}deg`);
   }, [isPeeling]);
 
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => {
     setIsHovered(false);
     if (!isPeeling) {
-      setTilt({ x: 0, y: 0 });
-      setPointerPos({ x: 50, y: 50 });
+      const card = cardRef.current;
+      if (card) {
+        card.style.setProperty('--card-rot-x', '0deg');
+        card.style.setProperty('--card-rot-y', '0deg');
+        card.style.setProperty('--pointer-x', '50%');
+        card.style.setProperty('--pointer-y', '50%');
+        card.style.setProperty('--holo-angle', '135deg');
+      }
       setPeelProgress(0);
       setIsExpanded(false);
     }
@@ -100,8 +111,8 @@ export const HoloPeelCard: React.FC<HoloPeelCardProps> = ({
   };
 
   const handlePeelEnd = (e?: React.MouseEvent | React.TouchEvent) => {
-    if (e) e.stopPropagation();
     if (!isPeeling) return;
+    if (e) e.stopPropagation();
     setIsPeeling(false);
     onPeelStateChange?.(false);
     if (peelProgress > 0.4) {
@@ -117,8 +128,6 @@ export const HoloPeelCard: React.FC<HoloPeelCardProps> = ({
     triggerPeelComplete();
   };
 
-  // Holographic diffraction angle based on cursor position
-  const holoAngle = (tilt.y * 14 + tilt.x * 10 + 135) % 360;
   const peelPercent = Math.round(peelProgress * 100);
 
   return (
@@ -129,14 +138,14 @@ export const HoloPeelCard: React.FC<HoloPeelCardProps> = ({
       onMouseLeave={handleMouseLeave}
       onMouseMoveCapture={isPeeling ? handlePeelMove : undefined}
       onTouchMove={isPeeling ? handlePeelMove : undefined}
-      onMouseUp={handlePeelEnd}
-      onTouchEnd={handlePeelEnd}
+      onMouseUp={isPeeling ? handlePeelEnd : undefined}
+      onTouchEnd={isPeeling ? handlePeelEnd : undefined}
       className={`
         relative w-[340px] sm:w-[380px] md:w-[410px] h-[520px] select-none cursor-grab active:cursor-grabbing
-        transition-all duration-300 ease-out will-change-transform pixel-corners-lg
+        transition-transform duration-300 ease-out will-change-transform pixel-corners-lg
       `}
       style={{
-        transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(${isActive ? 1.02 : 0.94})`,
+        transform: `perspective(1000px) rotateX(var(--card-rot-x, 0deg)) rotateY(var(--card-rot-y, 0deg)) scale(${isActive ? 1.02 : 0.94})`,
         transformStyle: 'preserve-3d',
       }}
     >
@@ -206,24 +215,30 @@ export const HoloPeelCard: React.FC<HoloPeelCardProps> = ({
             : '0 10px 30px rgba(12, 10, 42, 0.85)',
         }}
       >
-        {/* TOP ~74%: FULL PREVIEW IMAGE */}
-        <div className="relative w-full h-[385px] overflow-hidden bg-[#1b1830]">
+        {/* TOP ~74%: FULL PREVIEW IMAGE (Non-draggable so dragging on image rotates carousel) */}
+        <div className="relative w-full h-[385px] overflow-hidden bg-[#1b1830] select-none">
           <img
             src={project.heroImage}
             alt={project.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            draggable={false}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 pointer-events-none select-none"
+            style={{
+              userSelect: 'none',
+              WebkitUserSelect: 'none',
+              WebkitUserDrag: 'none',
+            } as React.CSSProperties}
             loading="lazy"
           />
 
           {/* Minimalist Top Identifier & Number Badge */}
-          <div className="absolute top-3.5 left-3.5 flex items-center gap-2 px-3 py-1 bg-[#1b1830]/90 border border-[#4a4378] backdrop-blur-md pixel-corners-sm">
+          <div className="absolute top-3.5 left-3.5 flex items-center gap-2 px-3 py-1 bg-[#1b1830]/90 border border-[#4a4378] backdrop-blur-md pixel-corners-sm pointer-events-none select-none">
             <span className="text-sm font-bold text-[#ff9a3c] font-display">{project.number}</span>
             <span className="text-[11px] text-[#fbf1d4] uppercase tracking-wider font-semibold font-mono">{project.category.split('&')[0]}</span>
           </div>
         </div>
 
         {/* BOTTOM ~26%: ONLY PROJECT NAME & TAGLINE */}
-        <div className="h-[135px] w-full bg-[#272343] border-t-2 border-[#4a4378] px-5 py-4 flex flex-col justify-center">
+        <div className="h-[135px] w-full bg-[#272343] border-t-2 border-[#4a4378] px-5 py-4 flex flex-col justify-center select-none pointer-events-none">
           <h3 className="text-2xl sm:text-3xl font-bold font-display text-[#fbf1d4] tracking-tight truncate">
             {project.title}
           </h3>
@@ -240,7 +255,7 @@ export const HoloPeelCard: React.FC<HoloPeelCardProps> = ({
           className="pointer-events-none absolute inset-0 mix-blend-color-dodge transition-opacity duration-300"
           style={{
             opacity: isHovered ? 0.75 : 0.45,
-            background: `linear-gradient(${holoAngle}deg, 
+            background: `linear-gradient(var(--holo-angle, 135deg), 
               rgba(255, 154, 60, 0.35) 0%, 
               rgba(216, 255, 122, 0.3) 20%, 
               rgba(143, 195, 232, 0.35) 45%, 
@@ -255,7 +270,7 @@ export const HoloPeelCard: React.FC<HoloPeelCardProps> = ({
           className="pointer-events-none absolute inset-0 mix-blend-overlay transition-opacity duration-200"
           style={{
             opacity: isHovered ? 0.8 : 0.35,
-            background: `radial-gradient(circle 300px at ${pointerPos.x}% ${pointerPos.y}%, rgba(251, 241, 212, 0.5) 0%, rgba(251, 241, 212, 0.15) 35%, transparent 70%)`,
+            background: `radial-gradient(circle 300px at var(--pointer-x, 50%) var(--pointer-y, 50%), rgba(251, 241, 212, 0.5) 0%, rgba(251, 241, 212, 0.15) 35%, transparent 70%)`,
           }}
         />
 
@@ -356,3 +371,5 @@ export const HoloPeelCard: React.FC<HoloPeelCardProps> = ({
     </div>
   );
 };
+
+export const HoloPeelCard = memo(HoloPeelCardComponent);

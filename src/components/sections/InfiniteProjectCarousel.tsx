@@ -34,6 +34,9 @@ export const InfiniteProjectCarousel: React.FC<InfiniteProjectCarouselProps> = (
     };
   }, []);
 
+  const dragOffsetRef = useRef<number>(0);
+  const rafIdRef = useRef<number | null>(null);
+
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -47,42 +50,55 @@ export const InfiniteProjectCarousel: React.FC<InfiniteProjectCarouselProps> = (
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [totalProjects]);
 
-  // Drag interaction handlers - Rotates carousel in 3D
+  // Drag interaction handlers - Rotates carousel in 3D with RAF throttling & pointer capture
   const handlePointerDown = (e: React.PointerEvent) => {
     if (isPeelingActive) return;
     setIsDragging(true);
     dragStartRef.current = e.clientX;
+    dragOffsetRef.current = 0;
     setDragOffset(0);
+    try {
+      (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    } catch {
+      // Ignore if pointer capture not supported
+    }
   };
 
   const handlePointerMove = (e: React.PointerEvent) => {
     if (isPeelingActive || !isDragging) return;
     const deltaX = e.clientX - dragStartRef.current;
-    setDragOffset(deltaX);
+    dragOffsetRef.current = deltaX;
+
+    // Throttle state update to screen refresh rate (16.6ms / 8.3ms) via RAF
+    if (!rafIdRef.current) {
+      rafIdRef.current = requestAnimationFrame(() => {
+        setDragOffset(dragOffsetRef.current);
+        rafIdRef.current = null;
+      });
+    }
   };
 
-  const handlePointerUp = () => {
+  const handlePointerUp = (e: React.PointerEvent) => {
     if (!isDragging) return;
+    if (rafIdRef.current) {
+      cancelAnimationFrame(rafIdRef.current);
+      rafIdRef.current = null;
+    }
+    try {
+      (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+    } catch {
+      // Ignore
+    }
     setIsDragging(false);
-    // Drag threshold to rotate to previous/next project in 3D
-    if (dragOffset > 60) {
+    const finalOffset = dragOffsetRef.current;
+    if (finalOffset > 60) {
       setCurrentIndex((prev) => (prev - 1 + totalProjects) % totalProjects);
-    } else if (dragOffset < -60) {
+    } else if (finalOffset < -60) {
       setCurrentIndex((prev) => (prev + 1) % totalProjects);
     }
+    dragOffsetRef.current = 0;
     setDragOffset(0);
   };
-
-  // Wheel scrubbing
-  const handleWheel = useCallback((e: React.WheelEvent) => {
-    if (Math.abs(e.deltaX) > 35 || Math.abs(e.deltaY) > 50) {
-      if (e.deltaX > 35 || e.deltaY > 50) {
-        setCurrentIndex((prev) => (prev + 1) % totalProjects);
-      } else {
-        setCurrentIndex((prev) => (prev - 1 + totalProjects) % totalProjects);
-      }
-    }
-  }, [totalProjects]);
 
   const activeProject = PROJECTS[currentIndex];
 
@@ -90,7 +106,6 @@ export const InfiniteProjectCarousel: React.FC<InfiniteProjectCarouselProps> = (
     <section
       id="projects"
       ref={containerRef}
-      onWheel={handleWheel}
       className="relative py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12 overflow-hidden select-none"
     >
       {/* Section Header */}
@@ -186,6 +201,9 @@ export const InfiniteProjectCarousel: React.FC<InfiniteProjectCarouselProps> = (
 
           const zIndex = Math.round(100 - absOffset * 20);
           const isInteractable = absOffset <= 2.2;
+
+          // Performance optimization: skip DOM nodes completely for cards rotated out of view
+          if (absOffset > 2.55) return null;
 
           return (
             <div
