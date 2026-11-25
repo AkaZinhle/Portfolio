@@ -56,18 +56,21 @@ export const ThinkingOrb: React.FC<ThinkingOrbProps> = ({
       const cy = size / 2;
       const r = (size / 2) * 0.85;
 
-      // Color scheme
-      let baseHue = 332; // Vibrant Pink (#FC75B4)
-      let accentHue = 345;
+      // Color scheme aligned to Pixel Valley palette
+      let baseHue = 28; // Ember (#ff9a3c)
+      let accentHue = 205; // Pond (#8fc3e8)
       if (theme === 'violet') {
-        baseHue = 52; // Warm Olive / Gold (#756f45 / #c9be83)
-        accentHue = 42;
+        baseHue = 250; // Border violet (#4a4378)
+        accentHue = 28;
       } else if (theme === 'amber') {
-        baseHue = 332;
-        accentHue = 50;
+        baseHue = 28; // Ember
+        accentHue = 78; // Firefly (#d8ff7a)
+      } else if (theme === 'cyan') {
+        baseHue = 205; // Pond (#8fc3e8)
+        accentHue = 28; // Ember
       } else if (theme === 'light') {
-        baseHue = 35; // Cream (#F0E5DB)
-        accentHue = 332;
+        baseHue = 45; // Warm Cream (#fbf1d4)
+        accentHue = 28;
       }
 
       ctx.save();

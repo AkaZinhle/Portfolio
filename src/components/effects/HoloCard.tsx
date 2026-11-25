@@ -48,11 +48,11 @@ export const HoloCard: React.FC<HoloCardProps> = ({
         radial-gradient(circle at ${px}% ${py}%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 45%),
         linear-gradient(
           ${angle}deg,
-          rgba(255, 0, 128, 0.12) 0%,
-          rgba(0, 255, 255, 0.14) 25%,
-          rgba(128, 0, 255, 0.12) 50%,
-          rgba(255, 215, 0, 0.12) 75%,
-          rgba(0, 255, 128, 0.12) 100%
+          rgba(255, 154, 60, 0.15) 0%,
+          rgba(216, 255, 122, 0.15) 25%,
+          rgba(143, 195, 232, 0.18) 50%,
+          rgba(251, 241, 212, 0.15) 75%,
+          rgba(255, 111, 111, 0.15) 100%
         )
       `,
       backgroundBlendMode: 'color-dodge, overlay',
@@ -101,7 +101,7 @@ export const HoloCard: React.FC<HoloCardProps> = ({
           isHovered ? 'opacity-100' : 'opacity-0'
         }`}
         style={{
-          background: 'linear-gradient(135deg, rgba(252, 117, 180, 0.4), rgba(71, 67, 41, 0.4), rgba(240, 229, 219, 0.3))',
+          background: 'linear-gradient(135deg, rgba(255, 154, 60, 0.5), rgba(74, 67, 120, 0.6), rgba(143, 195, 232, 0.4))',
           mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
           maskComposite: 'exclude',
           WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',

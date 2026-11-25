@@ -8,47 +8,72 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: {
-          DEFAULT: '#12110d',
-          secondary: '#1a1812',
-          tertiary: '#242118',
-          card: '#1e1c15',
-          subtle: '#2d281d',
-        },
-        foreground: {
-          DEFAULT: '#F0E5DB',
-          muted: '#c7bcab',
-          subtle: '#8e8472',
-          dark: '#474329',
-        },
-        brand: {
-          primary: '#F0E5DB',
-          secondary: '#474329',
-          olive: '#474329',
-          oliveLight: '#756f45',
-          oliveMuted: '#5a5435',
-          accent: '#FC75B4',
-          pink: '#FC75B4',
-          pinkLight: '#ffa3d1',
-          pinkDark: '#d94d8f',
-          cream: '#F0E5DB',
-          gold: '#c9be83',
-          // Aliases to seamlessly theme existing components
-          aqua: '#FC75B4',
-          teal: '#756f45',
-          cyan: '#FC75B4',
-          sky: '#ffa3d1',
-          blue: '#FC75B4',
-          violet: '#756f45',
-          purple: '#d94d8f',
-          amber: '#c9be83',
+        // Pixel Valley Master Palette Specification
+        surface: {
+          DEFAULT: '#1b1830', // Violet-ink, world's shadow color
+          raised: '#272343',  // Cards, inputs
+          hover: '#352f5a',   // Hover and active states
         },
         border: {
-          subtle: 'rgba(240, 229, 219, 0.12)',
-          strong: 'rgba(240, 229, 219, 0.22)',
-          accent: 'rgba(252, 117, 180, 0.4)',
-          secondary: 'rgba(71, 67, 41, 0.6)',
-        }
+          DEFAULT: '#4a4378', // The birds' wing color
+          subtle: 'rgba(74, 67, 120, 0.4)',
+          strong: '#4a4378',
+        },
+        outline: {
+          DEFAULT: '#0c0a2a', // Sprite shadow color, hard shadow
+        },
+        hardShadow: '#0c0a2a',
+        content: {
+          DEFAULT: '#fbf1d4', // Warm cream, like firelight on paper
+          muted: '#b8b0d4',   // Lavender-grey
+        },
+        ember: {
+          DEFAULT: '#ff9a3c', // Campfire orange, primary action
+          pressed: '#e8741a', // Active / pressed state
+        },
+        pond: {
+          DEFAULT: '#8fc3e8', // Water highlight, links & info
+        },
+        firefly: {
+          DEFAULT: '#d8ff7a', // Success, live indicators
+        },
+        berry: {
+          DEFAULT: '#ff6f6f', // Error, alerts, heart bubble
+        },
+        // Backward-compatibility aliases
+        background: {
+          DEFAULT: '#1b1830',
+          secondary: '#272343',
+          tertiary: '#352f5a',
+          card: '#272343',
+          subtle: '#1b1830',
+        },
+        foreground: {
+          DEFAULT: '#fbf1d4',
+          muted: '#b8b0d4',
+          subtle: '#b8b0d4',
+          dark: '#0c0a2a',
+        },
+        brand: {
+          primary: '#fbf1d4',
+          secondary: '#4a4378',
+          accent: '#ff9a3c',
+          pink: '#ff9a3c',
+          pinkLight: '#ffb43c',
+          pinkDark: '#e8741a',
+          cream: '#fbf1d4',
+          gold: '#d8ff7a',
+          aqua: '#8fc3e8',
+          teal: '#8fc3e8',
+          cyan: '#8fc3e8',
+          sky: '#8fc3e8',
+          blue: '#8fc3e8',
+          violet: '#4a4378',
+          purple: '#352f5a',
+          amber: '#ff9a3c',
+          emerald: '#d8ff7a',
+          rose: '#ff6f6f',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],

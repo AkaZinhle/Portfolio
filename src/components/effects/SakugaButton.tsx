@@ -62,11 +62,11 @@ export const SakugaButton: React.FC<SakugaButtonProps> = ({
 
   // Variants
   const variantClasses = {
-    primary: 'bg-[#FC75B4]/20 text-[#FC75B4] border border-[#FC75B4]/50 hover:bg-[#FC75B4]/30 hover:border-[#FC75B4] hover:shadow-[0_0_20px_rgba(252,117,180,0.35)]',
-    secondary: 'bg-[#474329]/40 text-[#F0E5DB] border border-[#756f45]/60 hover:bg-[#474329]/70 hover:border-[#F0E5DB]/40 hover:text-white',
-    accent: 'bg-gradient-to-r from-[#FC75B4]/25 to-[#756f45]/30 text-[#F0E5DB] border border-[#FC75B4]/50 hover:from-[#FC75B4]/35 hover:to-[#756f45]/50 hover:border-[#FC75B4] hover:shadow-[0_0_25px_rgba(252,117,180,0.35)]',
-    ghost: 'bg-transparent text-slate-300 hover:text-[#FC75B4] hover:bg-[#FC75B4]/10 border border-transparent',
-    outline: 'bg-transparent text-[#F0E5DB] border border-[#756f45] hover:border-[#FC75B4]/80 hover:text-[#FC75B4] hover:bg-[#FC75B4]/10',
+    primary: 'bg-[#ff9a3c] text-[#0c0a2a] border border-[#ff9a3c] hover:bg-[#e8741a] hover:border-[#e8741a] shadow-[0_0_18px_rgba(255,154,60,0.4)] font-bold active:bg-[#e8741a]',
+    secondary: 'bg-[#272343] text-[#fbf1d4] border border-[#4a4378] hover:bg-[#352f5a] hover:border-[#8fc3e8] hover:text-[#fbf1d4] shadow-md',
+    accent: 'bg-gradient-to-r from-[#ff9a3c]/25 to-[#4a4378]/40 text-[#fbf1d4] border border-[#ff9a3c]/60 hover:from-[#ff9a3c]/35 hover:to-[#4a4378]/60 hover:border-[#ff9a3c] hover:shadow-[0_0_20px_rgba(255,154,60,0.35)]',
+    ghost: 'bg-transparent text-[#b8b0d4] hover:text-[#ff9a3c] hover:bg-[#352f5a] border border-transparent',
+    outline: 'bg-[#1b1830]/80 backdrop-blur-sm text-[#fbf1d4] border border-[#4a4378] hover:border-[#ff9a3c] hover:text-[#ff9a3c] hover:bg-[#352f5a]',
   }[variant];
 
   // Dynamic spring transform

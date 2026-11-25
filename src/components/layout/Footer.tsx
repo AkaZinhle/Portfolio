@@ -8,31 +8,31 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="relative border-t border-white/10 bg-[#0e0d0a] pt-16 pb-12 overflow-hidden z-10 text-[#F0E5DB]">
+    <footer className="relative border-t-2 border-[#4a4378] bg-[#1b1830] pt-16 pb-12 overflow-hidden z-10 text-[#fbf1d4]">
       {/* Subtle top ambient glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-[#FC75B4]/40 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[2px] bg-gradient-to-r from-transparent via-[#ff9a3c]/60 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b-2 border-[#4a4378]">
           {/* Col 1: Identity & Living Atmosphere */}
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-[#1e1c15] border border-white/10 flex items-center justify-center pixel-corners-sm">
-                <ThinkingOrb state="breathing" size={24} theme="cyan" />
+              <div className="w-10 h-10 bg-[#272343] border border-[#4a4378] flex items-center justify-center pixel-corners-sm">
+                <ThinkingOrb state="breathing" size={24} theme="amber" />
               </div>
               <div>
-                <h3 className="font-bold text-[#F0E5DB] text-lg tracking-tight font-display">Wongai (Zee) Rankin</h3>
-                <p className="text-sm text-[#FC75B4]">AI Engineer | Machine Learning & Agentic Systems</p>
+                <h3 className="font-bold text-[#fbf1d4] text-lg tracking-tight font-display">Wongai (Zee) Rankin</h3>
+                <p className="text-sm text-[#ff9a3c]">AI Engineer | Machine Learning & Agentic Systems</p>
               </div>
             </div>
 
-            <p className="text-sm text-[#c7bcab] leading-relaxed max-w-md">
+            <p className="text-sm text-[#b8b0d4] leading-relaxed max-w-md">
               Specialising in industrial computer vision, local parameter-efficient LLM fine-tuning, and autonomous multi-tool agentic architectures (MCP & AP2).
             </p>
 
-            <div className="flex items-center gap-4 text-xs text-[#8e8472]">
-              <span className="flex items-center gap-1.5 text-[#FC75B4]">
-                <span className="w-2 h-2 rounded-full bg-[#FC75B4] animate-pulse" />
+            <div className="flex items-center gap-4 text-xs text-[#b8b0d4]">
+              <span className="flex items-center gap-1.5 text-[#d8ff7a]">
+                <span className="w-2 h-2 rounded-full bg-[#d8ff7a] animate-pulse" />
                 Available for Industry Roles & Research
               </span>
               <span>•</span>
@@ -42,27 +42,25 @@ export const Footer: React.FC = () => {
 
           {/* Col 2: Navigation */}
           <div className="space-y-3">
-            <h4 className="text-sm uppercase tracking-wider text-[#F0E5DB] font-bold font-display">Navigation</h4>
-            <ul className="space-y-2 text-sm text-[#c7bcab]">
-              <li><a href="#projects" className="hover:text-[#FC75B4] transition-colors">Selected Work</a></li>
-              <li><a href="#capabilities" className="hover:text-[#FC75B4] transition-colors">Technical Capabilities</a></li>
-              <li><a href="#experience" className="hover:text-[#FC75B4] transition-colors">Professional Timeline</a></li>
-              <li><a href="#education" className="hover:text-[#FC75B4] transition-colors">Education & Honours</a></li>
-              <li><a href="#about" className="hover:text-[#FC75B4] transition-colors">About & Engineering Bio</a></li>
-              <li><a href="#contact" className="hover:text-[#FC75B4] transition-colors">Get in Touch</a></li>
+            <h4 className="text-sm uppercase tracking-wider text-[#fbf1d4] font-bold font-display">Navigation</h4>
+            <ul className="space-y-2 text-sm text-[#b8b0d4]">
+              <li><a href="#projects" className="hover:text-[#ff9a3c] transition-colors">Selected Work</a></li>
+              <li><a href="#capabilities" className="hover:text-[#ff9a3c] transition-colors">Technical Capabilities</a></li>
+              <li><a href="#about" className="hover:text-[#ff9a3c] transition-colors">About & Engineering Bio</a></li>
+              <li><a href="#contact" className="hover:text-[#ff9a3c] transition-colors">Get in Touch</a></li>
             </ul>
           </div>
 
           {/* Col 3: Direct Connect & Links */}
           <div className="space-y-3">
-            <h4 className="text-sm uppercase tracking-wider text-[#F0E5DB] font-bold font-display">Connect</h4>
-            <ul className="space-y-2 text-sm text-[#c7bcab]">
+            <h4 className="text-sm uppercase tracking-wider text-[#fbf1d4] font-bold font-display">Connect</h4>
+            <ul className="space-y-2 text-sm text-[#b8b0d4]">
               <li>
                 <a
                   href="mailto:Wongairank@gmail.com"
-                  className="flex items-center gap-2 hover:text-[#FC75B4] transition-colors"
+                  className="flex items-center gap-2 hover:text-[#ff9a3c] transition-colors"
                 >
-                  <Mail className="w-4 h-4 text-[#FC75B4]" />
+                  <Mail className="w-4 h-4 text-[#ff9a3c]" />
                   Wongairank@gmail.com
                 </a>
               </li>
@@ -71,9 +69,9 @@ export const Footer: React.FC = () => {
                   href="https://github.com/AkaZinhle"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 hover:text-[#FC75B4] transition-colors"
+                  className="flex items-center gap-2 hover:text-[#ff9a3c] transition-colors"
                 >
-                  <Github className="w-4 h-4 text-[#FC75B4]" />
+                  <Github className="w-4 h-4 text-[#8fc3e8]" />
                   github.com/AkaZinhle
                 </a>
               </li>
@@ -82,9 +80,9 @@ export const Footer: React.FC = () => {
                   href="https://linkedin.com/in/wongai-rankin"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 hover:text-[#FC75B4] transition-colors"
+                  className="flex items-center gap-2 hover:text-[#ff9a3c] transition-colors"
                 >
-                  <Linkedin className="w-4 h-4 text-[#FC75B4]" />
+                  <Linkedin className="w-4 h-4 text-[#8fc3e8]" />
                   linkedin.com/in/wongai-rankin
                 </a>
               </li>
@@ -92,7 +90,7 @@ export const Footer: React.FC = () => {
                 <a
                   href="/assets/docs/CV_W.Rankin.pdf"
                   download="CV_Wongai_Rankin.pdf"
-                  className="inline-flex items-center gap-1.5 text-[#FC75B4] hover:underline pt-1"
+                  className="inline-flex items-center gap-1.5 text-[#ff9a3c] hover:underline pt-1"
                 >
                   Download Master Curriculum Vitae (PDF)
                 </a>
@@ -102,14 +100,14 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar: Copyright & Back to top */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8e8472]">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#b8b0d4]">
           <p>
             © {new Date().getFullYear()} Wongai Rankin. All rights reserved. Built with React, TypeScript, Tailwind CSS & Canvas.
           </p>
 
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-1.5 text-[#c7bcab] hover:text-[#FC75B4] transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 text-[#b8b0d4] hover:text-[#ff9a3c] transition-colors cursor-pointer"
             aria-label="Scroll back to top of page"
           >
             <span>Back to top</span>

@@ -38,7 +38,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#0c0d12]/85 backdrop-blur-md border-b border-white/5 shadow-2xl py-3.5'
+          ? 'bg-[#1b1830]/90 backdrop-blur-md border-b-2 border-[#4a4378] shadow-2xl py-3.5'
           : 'bg-transparent py-5'
       }`}
     >
@@ -49,26 +49,26 @@ export const Navbar: React.FC<NavbarProps> = ({
           className="group flex items-center gap-3 focus:outline-none"
           aria-label="Wongai Rankin Portfolio Home"
         >
-          <div className="relative flex items-center justify-center w-10 h-10 bg-[#1e1c15] border-2 border-[#FC75B4]/50 group-hover:border-[#FC75B4] transition-all duration-300 shadow-inner pixel-corners-sm">
+          <div className="relative flex items-center justify-center w-10 h-10 bg-[#272343] border-2 border-[#4a4378] group-hover:border-[#ff9a3c] transition-all duration-300 shadow-inner pixel-corners-sm">
             <ThinkingOrb state="breathing" size={26} theme="cyan" />
           </div>
           <div className="flex flex-col">
-            <span className="font-bold text-lg tracking-tight text-[#F0E5DB] group-hover:text-[#FC75B4] transition-colors duration-200 font-display">
+            <span className="font-bold text-lg tracking-tight text-[#fbf1d4] group-hover:text-[#ff9a3c] transition-colors duration-200 font-display">
               Wongai Rankin
             </span>
-            <span className="text-xs text-[#FC75B4] -mt-1 tracking-wider uppercase font-semibold">
+            <span className="text-xs text-[#ff9a3c] -mt-1 tracking-wider uppercase font-semibold">
               AI Engineer
             </span>
           </div>
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-2 p-1.5 bg-[#1e1c15]/90 border-2 border-[#474329] backdrop-blur-md shadow-lg pixel-corners">
+        <nav className="hidden md:flex items-center gap-2 p-1.5 bg-[#272343]/90 border-2 border-[#4a4378] backdrop-blur-md shadow-lg pixel-corners">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="px-4 py-1.5 text-sm font-semibold text-[#F0E5DB] hover:text-[#FC75B4] hover:bg-[#474329]/40 transition-all duration-200 pixel-corners-sm"
+              className="px-4 py-1.5 text-sm font-semibold text-[#fbf1d4] hover:text-[#ff9a3c] hover:bg-[#352f5a] transition-all duration-200 pixel-corners-sm"
             >
               {link.name}
             </a>
@@ -84,8 +84,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             aria-label="Toggle Living Environment Effects"
             className={`px-3 py-2 border text-xs flex items-center gap-1.5 transition-all duration-200 cursor-pointer pixel-corners-sm ${
               envEnabled
-                ? 'bg-[#FC75B4]/20 text-[#FC75B4] border-[#FC75B4]/50 hover:bg-[#FC75B4]/30 shadow-[0_0_15px_rgba(252,117,180,0.3)]'
-                : 'bg-white/5 text-[#8e8472] border-white/10 hover:text-[#F0E5DB]'
+                ? 'bg-[#ff9a3c]/20 text-[#ff9a3c] border-[#ff9a3c]/60 hover:bg-[#ff9a3c]/30 shadow-[0_0_15px_rgba(255,154,60,0.35)]'
+                : 'bg-[#272343] text-[#b8b0d4] border-[#4a4378] hover:text-[#fbf1d4]'
             }`}
           >
             <Sparkles className="w-3.5 h-3.5" />
@@ -99,14 +99,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             aria-label="Toggle Ambient Audio"
             className={`p-2.5 border text-xs flex items-center gap-1.5 transition-all duration-200 cursor-pointer pixel-corners-sm ${
               audioPlaying
-                ? 'bg-[#FC75B4]/20 text-[#FC75B4] border-[#FC75B4]/50 hover:bg-[#FC75B4]/30 shadow-[0_0_15px_rgba(252,117,180,0.3)]'
-                : 'bg-white/5 text-[#8e8472] border-white/10 hover:text-[#F0E5DB]'
+                ? 'bg-[#ff9a3c]/20 text-[#ff9a3c] border-[#ff9a3c]/60 hover:bg-[#ff9a3c]/30 shadow-[0_0_15px_rgba(255,154,60,0.35)]'
+                : 'bg-[#272343] text-[#b8b0d4] border-[#4a4378] hover:text-[#fbf1d4]'
             }`}
           >
             {audioPlaying ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
           </button>
 
-          <div className="h-5 w-[1px] bg-white/10 mx-1" />
+          <div className="h-5 w-[1px] bg-[#4a4378] mx-1" />
 
           {/* GitHub Link */}
           <a
@@ -114,7 +114,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             title="GitHub Profile"
-            className="p-2.5 bg-[#1e1c15] text-[#F0E5DB] hover:text-[#FC75B4] border border-white/10 hover:border-[#FC75B4]/50 transition-all duration-200 cursor-pointer pixel-corners-sm"
+            className="p-2.5 bg-[#272343] text-[#fbf1d4] hover:text-[#ff9a3c] border border-[#4a4378] hover:border-[#ff9a3c]/60 hover:bg-[#352f5a] transition-all duration-200 cursor-pointer pixel-corners-sm"
           >
             <Github className="w-4 h-4" />
           </a>
@@ -125,7 +125,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             title="LinkedIn Profile"
-            className="p-2.5 bg-[#1e1c15] text-[#F0E5DB] hover:text-[#FC75B4] border border-white/10 hover:border-[#FC75B4]/50 transition-all duration-200 cursor-pointer pixel-corners-sm"
+            className="p-2.5 bg-[#272343] text-[#fbf1d4] hover:text-[#ff9a3c] border border-[#4a4378] hover:border-[#ff9a3c]/60 hover:bg-[#352f5a] transition-all duration-200 cursor-pointer pixel-corners-sm"
           >
             <Linkedin className="w-4 h-4" />
           </a>
@@ -148,7 +148,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={onToggleEnv}
             aria-label="Toggle Environment Effects"
             className={`p-2 border text-xs pixel-corners-sm ${
-              envEnabled ? 'bg-[#FC75B4]/20 text-[#FC75B4] border-[#FC75B4]/40' : 'bg-white/5 text-[#8e8472] border-white/10'
+              envEnabled ? 'bg-[#ff9a3c]/20 text-[#ff9a3c] border-[#ff9a3c]/60' : 'bg-[#272343] text-[#b8b0d4] border-[#4a4378]'
             }`}
           >
             <Sparkles className="w-4 h-4" />
@@ -156,7 +156,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 bg-white/5 border border-white/10 text-[#F0E5DB] hover:text-[#FC75B4] pixel-corners-sm"
+            className="p-2 bg-[#272343] border border-[#4a4378] text-[#fbf1d4] hover:text-[#ff9a3c] pixel-corners-sm"
             aria-label="Open mobile navigation menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -166,25 +166,25 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#0c0d12]/95 border-b-2 border-[#474329] px-4 pt-3 pb-6 backdrop-blur-xl mt-3 animate-in fade-in slide-in-from-top-2 duration-200 pixel-corners">
+        <div className="md:hidden bg-[#1b1830]/95 border-b-2 border-[#4a4378] px-4 pt-3 pb-6 backdrop-blur-xl mt-3 animate-in fade-in slide-in-from-top-2 duration-200 pixel-corners">
           <div className="flex flex-col space-y-2">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2 text-sm font-medium text-[#F0E5DB] hover:text-[#FC75B4] hover:bg-[#474329]/40 pixel-corners-sm transition-colors"
+                className="px-3 py-2 text-sm font-medium text-[#fbf1d4] hover:text-[#ff9a3c] hover:bg-[#352f5a] pixel-corners-sm transition-colors"
               >
                 {link.name}
               </a>
             ))}
-            <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+            <div className="pt-3 border-t border-[#4a4378] flex items-center justify-between">
               <div className="flex gap-2">
                 <a
                   href="https://github.com/AkaZinhle"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-white/5 border border-white/10 text-[#F0E5DB] pixel-corners-sm"
+                  className="p-2 bg-[#272343] border border-[#4a4378] text-[#fbf1d4] hover:text-[#ff9a3c] pixel-corners-sm"
                 >
                   <Github className="w-4 h-4" />
                 </a>
@@ -192,7 +192,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   href="https://linkedin.com/in/wongai-rankin"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-white/5 border border-white/10 text-slate-300"
+                  className="p-2 bg-[#272343] border border-[#4a4378] text-[#fbf1d4] hover:text-[#ff9a3c] pixel-corners-sm"
                 >
                   <Linkedin className="w-4 h-4" />
                 </a>

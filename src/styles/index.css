@@ -12,13 +12,8 @@
     -moz-osx-font-smoothing: unset;
     font-smooth: never;
     text-rendering: optimizeSpeed;
-    @apply bg-[#12110d] text-[#F0E5DB];
-    background-color: #12110d;
-    background-image: 
-      radial-gradient(ellipse at 50% 0%, rgba(252, 117, 180, 0.06) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 50%, rgba(71, 67, 41, 0.2) 0%, transparent 50%),
-      radial-gradient(ellipse at 20% 80%, rgba(252, 117, 180, 0.04) 0%, transparent 50%);
-    background-attachment: fixed;
+    color: #fbf1d4;
+    background-color: #17285a;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -26,6 +21,8 @@
     letter-spacing: 0.04em;
     -webkit-font-smoothing: none;
     -moz-osx-font-smoothing: unset;
+    color: #fbf1d4;
+    text-shadow: 2px 2px 0 #0c0a2a, -1px -1px 0 #0c0a2a, 1px -1px 0 #0c0a2a, -1px 1px 0 #0c0a2a;
   }
 
   button, input, textarea, select {
@@ -48,11 +45,11 @@
 
 /* Pixel-Perfect Glass Card with Cyber-Border */
 .editorial-card {
-  background: rgba(30, 28, 21, 0.9);
+  background: rgba(39, 35, 67, 0.92);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 2px solid rgba(240, 229, 219, 0.15);
-  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.75);
+  border: 2px solid #4a4378;
+  box-shadow: 4px 4px 0px 0px #0c0a2a;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   clip-path: polygon(
     0 6px, 3px 6px, 3px 3px, 6px 3px, 6px 0,
@@ -63,8 +60,23 @@
 }
 
 .editorial-card:hover {
-  border-color: rgba(252, 117, 180, 0.65);
-  box-shadow: 5px 5px 0px 0px rgba(252, 117, 180, 0.35);
+  border-color: #ff9a3c;
+  box-shadow: 5px 5px 0px 0px rgba(255, 154, 60, 0.45);
+}
+
+/* Distinct Pixel Backdrop Panel for elements over the living background */
+.pixel-panel {
+  background: rgba(39, 35, 67, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 2px solid #4a4378;
+  box-shadow: 3px 3px 0px 0px #0c0a2a;
+  clip-path: polygon(
+    0 6px, 3px 6px, 3px 3px, 6px 3px, 6px 0,
+    calc(100% - 6px) 0, calc(100% - 6px) 3px, calc(100% - 3px) 3px, calc(100% - 3px) 6px, 100% 6px,
+    100% calc(100% - 6px), calc(100% - 3px) calc(100% - 6px), calc(100% - 3px) calc(100% - 3px), calc(100% - 6px) calc(100% - 3px), calc(100% - 6px) 100%,
+    6px 100%, 6px calc(100% - 3px), 3px calc(100% - 3px), 3px calc(100% - 6px), 0 calc(100% - 6px)
+  );
 }
 
 /* Pixel Border Utilities */
@@ -97,8 +109,8 @@
 
 .pixel-frame {
   position: relative;
-  border: 2px solid #474329;
-  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.75);
+  border: 2px solid #4a4378;
+  box-shadow: 3px 3px 0px 0px #0c0a2a;
   transition: all 0.2s ease-out;
   clip-path: polygon(
     0 5px, 2px 5px, 2px 2px, 5px 2px, 5px 0,
@@ -109,63 +121,53 @@
 }
 
 .pixel-frame:hover {
-  border-color: #FC75B4;
-  box-shadow: 3px 3px 0px 0px rgba(252, 117, 180, 0.45);
+  border-color: #ff9a3c;
+  box-shadow: 3px 3px 0px 0px rgba(255, 154, 60, 0.45);
 }
 
 /* Pixel Shadow Primitives */
 .pixel-shadow {
-  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.7);
+  box-shadow: 4px 4px 0px 0px #0c0a2a;
 }
 
-.pixel-shadow-pink {
-  box-shadow: 4px 4px 0px 0px rgba(252, 117, 180, 0.45);
+.pixel-shadow-ember {
+  box-shadow: 4px 4px 0px 0px rgba(255, 154, 60, 0.5);
 }
 
-.pixel-shadow-cyan {
-  box-shadow: 4px 4px 0px 0px rgba(252, 117, 180, 0.45);
+.pixel-shadow-pond {
+  box-shadow: 4px 4px 0px 0px rgba(143, 195, 232, 0.4);
 }
 
 /* Holo Gradient Overlay */
 .holo-shimmer {
   background: linear-gradient(
     135deg,
-    rgba(240, 229, 219, 0) 0%,
-    rgba(252, 117, 180, 0.15) 25%,
-    rgba(71, 67, 41, 0.2) 50%,
-    rgba(252, 117, 180, 0.15) 75%,
-    rgba(240, 229, 219, 0) 100%
+    rgba(251, 241, 212, 0) 0%,
+    rgba(255, 154, 60, 0.15) 25%,
+    rgba(53, 47, 90, 0.3) 50%,
+    rgba(143, 195, 232, 0.2) 75%,
+    rgba(251, 241, 212, 0) 100%
   );
   background-size: 200% 200%;
 }
 
 /* Text Gradients */
-.text-gradient-cyan, .text-gradient-pink {
-  background: linear-gradient(135deg, #F0E5DB 15%, #FC75B4 70%, #ffa3d1 100%);
+.text-gradient-ember {
+  background: linear-gradient(135deg, #fbf1d4 15%, #ff9a3c 70%, #e8741a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.text-gradient-violet, .text-gradient-olive {
-  background: linear-gradient(135deg, #F0E5DB 20%, #c9be83 70%, #756f45 100%);
+.text-gradient-pond {
+  background: linear-gradient(135deg, #fbf1d4 20%, #8fc3e8 70%, #4f8bc6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.text-gradient-amber {
-  background: linear-gradient(135deg, #F0E5DB 20%, #ffa3d1 70%, #FC75B4 100%);
+.text-gradient-firefly {
+  background: linear-gradient(135deg, #fbf1d4 20%, #d8ff7a 70%, #b4c25a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-/* Pixel Border Utility */
-.pixel-corners {
-  clip-path: polygon(
-    0 4px, 4px 4px, 4px 0,
-    calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
-    100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%,
-    4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
-  );
 }
 
 /* Custom Scrollbar in Pixel Aesthetic */
@@ -174,17 +176,17 @@
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0e0d0a;
+  background: #1b1830;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2b271d;
-  border: 2px solid #0e0d0a;
+  background: #4a4378;
+  border: 2px solid #0c0a2a;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #FC75B4;
+  background: #ff9a3c;
 }
 
 /* Smooth custom range slider */
 input[type=range] {
-  accent-color: #FC75B4;
+  accent-color: #ff9a3c;
 }

@@ -61,19 +61,19 @@ export const Contact: React.FC = () => {
   return (
     <section ref={contactRef} id="contact" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
       {/* Section Header */}
-      <div className="space-y-4 max-w-3xl">
+      <div className="space-y-4 max-w-3xl p-5 sm:p-6 bg-[#272343]/88 border-2 border-[#4a4378] backdrop-blur-md pixel-corners shadow-xl">
         <div className="flex items-center gap-2">
-          <span className="font-mono text-xs px-2.5 py-1 bg-[#FC75B4]/15 text-[#FC75B4] border border-[#FC75B4]/40 uppercase tracking-widest font-semibold pixel-corners-sm">
+          <span className="font-mono text-xs px-2.5 py-1 bg-[#ff9a3c]/20 text-[#ff9a3c] border border-[#ff9a3c]/50 uppercase tracking-widest font-semibold pixel-corners-sm">
             Get in Touch
           </span>
-          <div className="h-[1px] w-12 bg-[#FC75B4]/30" />
+          <div className="h-[1px] w-12 bg-[#ff9a3c]/40" />
         </div>
 
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F0E5DB] font-display">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#fbf1d4] font-display">
           Initiate Contact & Engineering Collaboration
         </h2>
 
-        <p className="text-sm sm:text-base text-[#c7bcab] leading-relaxed font-light">
+        <p className="text-sm sm:text-base text-[#fbf1d4] leading-relaxed font-light">
           Open to full-time AI engineering roles, machine learning research, and technical consultations. Reach out via email, LinkedIn, or the message console below.
         </p>
       </div>
@@ -82,61 +82,61 @@ export const Contact: React.FC = () => {
         {/* Left Column: Direct Communication Channels (5 cols) */}
         <div className="lg:col-span-5 space-y-6">
           <HoloCard intensity={0.9} className="w-full">
-            <div className="editorial-card p-6 sm:p-8 border border-[#474329] bg-[#1e1c15]/95 space-y-6 shadow-2xl pixel-corners-lg">
-              <div className="flex items-center justify-between pb-4 border-b border-white/5">
-                <span className="text-xs font-mono text-[#8e8472] uppercase tracking-wider">
+            <div className="editorial-card p-6 sm:p-8 border-2 border-[#4a4378] bg-[#272343]/95 space-y-6 shadow-2xl pixel-corners-lg">
+              <div className="flex items-center justify-between pb-4 border-b border-[#4a4378]">
+                <span className="text-xs font-mono text-[#b8b0d4] uppercase tracking-wider">
                   Contact Telemetry
                 </span>
-                <ThinkingOrb state="listening" size={24} theme="cyan" />
+                <ThinkingOrb state="listening" size={24} theme="amber" />
               </div>
 
               {/* Email Card with Quick Copy */}
-              <div className="p-4 bg-[#181611] border border-[#474329] space-y-2 pixel-corners">
-                <div className="text-xs text-[#8e8472]">Direct Email</div>
+              <div className="p-4 bg-[#1b1830] border-2 border-[#4a4378] space-y-2 pixel-corners">
+                <div className="text-xs text-[#b8b0d4]">Direct Email</div>
                 <div className="flex items-center justify-between gap-2">
                   <a
                     href={`mailto:${PROFILE.email}`}
-                    className="text-base font-bold text-[#F0E5DB] hover:text-[#FC75B4] transition-colors truncate font-display"
+                    className="text-base font-bold text-[#fbf1d4] hover:text-[#ff9a3c] transition-colors truncate font-display"
                   >
                     {PROFILE.email}
                   </a>
                   <button
                     onClick={handleCopyEmail}
-                    className="p-2 bg-white/5 hover:bg-white/10 text-[#F0E5DB] hover:text-[#FC75B4] transition-colors shrink-0 cursor-pointer pixel-corners-sm"
+                    className="p-2 bg-[#272343] hover:bg-[#352f5a] text-[#fbf1d4] hover:text-[#ff9a3c] transition-colors shrink-0 cursor-pointer pixel-corners-sm"
                     title="Copy Email Address"
                   >
-                    {copiedEmail ? <Check className="w-4 h-4 text-[#FC75B4]" /> : <Copy className="w-4 h-4" />}
+                    {copiedEmail ? <Check className="w-4 h-4 text-[#ff9a3c]" /> : <Copy className="w-4 h-4" />}
                   </button>
                 </div>
               </div>
 
               {/* Availability & Location Badges */}
-              <div className="space-y-3 text-sm text-[#F0E5DB]">
-                <div className="flex items-center gap-3 p-3.5 bg-[#181611] border border-[#474329] pixel-corners">
-                  <MapPin className="w-4 h-4 text-[#FC75B4] shrink-0" />
+              <div className="space-y-3 text-sm text-[#fbf1d4]">
+                <div className="flex items-center gap-3 p-3.5 bg-[#1b1830] border-2 border-[#4a4378] pixel-corners">
+                  <MapPin className="w-4 h-4 text-[#ff9a3c] shrink-0" />
                   <span>{PROFILE.location}</span>
                 </div>
 
-                <div className="flex items-center gap-3 p-3.5 bg-[#181611] border border-[#474329] pixel-corners">
-                  <Clock className="w-4 h-4 text-[#ffa3d1] shrink-0" />
+                <div className="flex items-center gap-3 p-3.5 bg-[#1b1830] border-2 border-[#4a4378] pixel-corners">
+                  <Clock className="w-4 h-4 text-[#8fc3e8] shrink-0" />
                   <span>Timezone: SAST (UTC+2) • Remote-Ready Global</span>
                 </div>
 
-                <div className="flex items-center gap-3 p-3.5 bg-[#181611] border border-[#474329] pixel-corners">
-                  <Sparkles className="w-4 h-4 text-[#FC75B4] shrink-0" />
+                <div className="flex items-center gap-3 p-3.5 bg-[#1b1830] border-2 border-[#4a4378] pixel-corners">
+                  <Sparkles className="w-4 h-4 text-[#d8ff7a] shrink-0" />
                   <span>Response Time: Within 24 Hours</span>
                 </div>
               </div>
 
               {/* Social Channels */}
-              <div className="pt-2 border-t border-white/10 flex flex-wrap gap-2.5">
+              <div className="pt-2 border-t border-[#4a4378] flex flex-wrap gap-2.5">
                 <a
                   href={PROFILE.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-[#181611] hover:bg-[#474329]/40 border border-[#474329] text-sm text-[#F0E5DB] hover:text-[#FC75B4] transition-colors pixel-corners-sm"
+                  className="flex items-center gap-2 px-4 py-2 bg-[#1b1830] hover:bg-[#352f5a] border-2 border-[#4a4378] hover:border-[#ff9a3c] text-sm text-[#fbf1d4] hover:text-[#ff9a3c] transition-colors pixel-corners-sm"
                 >
-                  <Linkedin className="w-4 h-4 text-[#FC75B4]" />
+                  <Linkedin className="w-4 h-4 text-[#8fc3e8]" />
                   LinkedIn
                 </a>
 
@@ -144,16 +144,16 @@ export const Contact: React.FC = () => {
                   href={PROFILE.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-[#181611] hover:bg-[#474329]/40 border border-[#474329] text-sm text-[#F0E5DB] hover:text-[#FC75B4] transition-colors pixel-corners-sm"
+                  className="flex items-center gap-2 px-4 py-2 bg-[#1b1830] hover:bg-[#352f5a] border-2 border-[#4a4378] hover:border-[#ff9a3c] text-sm text-[#fbf1d4] hover:text-[#ff9a3c] transition-colors pixel-corners-sm"
                 >
-                  <Github className="w-4 h-4 text-[#FC75B4]" />
+                  <Github className="w-4 h-4 text-[#ff9a3c]" />
                   GitHub
                 </a>
 
                 <a
                   href={PROFILE.resumeUrl}
                   download="CV_Wongai_Rankin.pdf"
-                  className="flex items-center gap-2 px-4 py-2 bg-[#FC75B4]/15 hover:bg-[#FC75B4]/25 border border-[#FC75B4]/40 text-sm text-[#FC75B4] font-bold transition-colors pixel-corners-sm"
+                  className="flex items-center gap-2 px-4 py-2 bg-[#ff9a3c]/20 hover:bg-[#ff9a3c]/30 border-2 border-[#ff9a3c]/60 text-sm text-[#ff9a3c] font-bold transition-colors pixel-corners-sm"
                 >
                   <FileDown className="w-4 h-4" />
                   Download CV
@@ -165,21 +165,21 @@ export const Contact: React.FC = () => {
 
         {/* Right Column: Direct Message Composer (7 cols) */}
         <div className="lg:col-span-7">
-          <div className="editorial-card p-6 sm:p-8 border border-[#474329] bg-[#1e1c15]/95 space-y-6 shadow-2xl pixel-corners-lg">
-            <div className="space-y-1 pb-3 border-b border-white/10">
-              <h3 className="text-2xl font-bold text-[#F0E5DB] tracking-tight font-display">
+          <div className="editorial-card p-6 sm:p-8 border-2 border-[#4a4378] bg-[#272343]/95 space-y-6 shadow-2xl pixel-corners-lg">
+            <div className="space-y-1 pb-3 border-b border-[#4a4378]">
+              <h3 className="text-2xl font-bold text-[#fbf1d4] tracking-tight font-display">
                 Send a Message
               </h3>
-              <p className="text-sm text-[#c7bcab] font-light">
+              <p className="text-sm text-[#b8b0d4] font-light">
                 Direct inquiry form routing to Wongairank@gmail.com
               </p>
             </div>
 
             {submitted ? (
-              <div className="p-8 bg-[#FC75B4]/10 border border-[#FC75B4]/30 text-center space-y-3 animate-in fade-in duration-300 pixel-corners">
-                <CheckCircle2 className="w-10 h-10 text-[#FC75B4] mx-auto" />
-                <h4 className="text-xl font-bold text-[#F0E5DB] font-display">Message Prepared!</h4>
-                <p className="text-sm text-[#c7bcab] max-w-sm mx-auto leading-relaxed">
+              <div className="p-8 bg-[#d8ff7a]/15 border-2 border-[#d8ff7a]/40 text-center space-y-3 animate-in fade-in duration-300 pixel-corners">
+                <CheckCircle2 className="w-10 h-10 text-[#d8ff7a] mx-auto" />
+                <h4 className="text-xl font-bold text-[#fbf1d4] font-display">Message Prepared!</h4>
+                <p className="text-sm text-[#b8b0d4] max-w-sm mx-auto leading-relaxed">
                   Thank you for reaching out. Your default email client has been opened with your message. I will respond within 24 hours.
                 </p>
                 <button
@@ -187,7 +187,7 @@ export const Contact: React.FC = () => {
                     setSubmitted(false);
                     setFormData({ name: '', email: '', subject: '', message: '' });
                   }}
-                  className="text-sm text-[#FC75B4] hover:underline pt-2 cursor-pointer font-bold"
+                  className="text-sm text-[#ff9a3c] hover:underline pt-2 cursor-pointer font-bold"
                 >
                   Send another message
                 </button>
@@ -196,8 +196,8 @@ export const Contact: React.FC = () => {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-sm text-[#F0E5DB] font-semibold">
-                      Your Name <span className="text-[#FC75B4]">*</span>
+                    <label className="text-sm text-[#fbf1d4] font-semibold">
+                      Your Name <span className="text-[#ff9a3c]">*</span>
                     </label>
                     <input
                       type="text"
@@ -205,13 +205,13 @@ export const Contact: React.FC = () => {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. Alex Vance"
-                      className="w-full px-4 py-3 bg-[#181611] border border-[#474329] text-[#F0E5DB] text-base placeholder:text-[#8e8472] focus:outline-none focus:border-[#FC75B4] transition-colors pixel-corners"
+                      className="w-full px-4 py-3 bg-[#1b1830] border-2 border-[#4a4378] text-[#fbf1d4] text-base placeholder:text-[#b8b0d4]/60 focus:outline-none focus:border-[#ff9a3c] focus:bg-[#272343] transition-colors pixel-corners"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-sm text-[#F0E5DB] font-semibold">
-                      Your Email <span className="text-[#FC75B4]">*</span>
+                    <label className="text-sm text-[#fbf1d4] font-semibold">
+                      Your Email <span className="text-[#ff9a3c]">*</span>
                     </label>
                     <input
                       type="email"
@@ -219,13 +219,13 @@ export const Contact: React.FC = () => {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="alex@company.com"
-                      className="w-full px-4 py-3 bg-[#181611] border border-[#474329] text-[#F0E5DB] text-base placeholder:text-[#8e8472] focus:outline-none focus:border-[#FC75B4] transition-colors pixel-corners"
+                      className="w-full px-4 py-3 bg-[#1b1830] border-2 border-[#4a4378] text-[#fbf1d4] text-base placeholder:text-[#b8b0d4]/60 focus:outline-none focus:border-[#ff9a3c] focus:bg-[#272343] transition-colors pixel-corners"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-sm text-[#F0E5DB] font-semibold">
+                  <label className="text-sm text-[#fbf1d4] font-semibold">
                     Subject / Topic
                   </label>
                   <input
@@ -233,13 +233,13 @@ export const Contact: React.FC = () => {
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     placeholder="e.g. AI Engineering Collaboration / Opportunity"
-                    className="w-full px-4 py-3 bg-[#181611] border border-[#474329] text-[#F0E5DB] text-base placeholder:text-[#8e8472] focus:outline-none focus:border-[#FC75B4] transition-colors pixel-corners"
+                    className="w-full px-4 py-3 bg-[#1b1830] border-2 border-[#4a4378] text-[#fbf1d4] text-base placeholder:text-[#b8b0d4]/60 focus:outline-none focus:border-[#ff9a3c] focus:bg-[#272343] transition-colors pixel-corners"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-sm text-[#F0E5DB] font-semibold">
-                    Message <span className="text-[#FC75B4]">*</span>
+                  <label className="text-sm text-[#fbf1d4] font-semibold">
+                    Message <span className="text-[#ff9a3c]">*</span>
                   </label>
                   <textarea
                     rows={4}
@@ -247,7 +247,7 @@ export const Contact: React.FC = () => {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Tell me about your project, team, or opportunity..."
-                    className="w-full px-4 py-3 bg-[#181611] border border-[#474329] text-[#F0E5DB] text-base placeholder:text-[#8e8472] focus:outline-none focus:border-[#FC75B4] transition-colors resize-none pixel-corners"
+                    className="w-full px-4 py-3 bg-[#1b1830] border-2 border-[#4a4378] text-[#fbf1d4] text-base placeholder:text-[#b8b0d4]/60 focus:outline-none focus:border-[#ff9a3c] focus:bg-[#272343] transition-colors resize-none pixel-corners"
                   />
                 </div>
 

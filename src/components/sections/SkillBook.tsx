@@ -384,19 +384,19 @@ export const SkillBook: React.FC = () => {
   return (
     <section id="capabilities" className="relative py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
       {/* Section Header */}
-      <div className="space-y-4 max-w-3xl">
+      <div className="space-y-4 max-w-3xl p-5 sm:p-6 bg-[#272343]/88 border-2 border-[#4a4378] backdrop-blur-md pixel-corners shadow-xl">
         <div className="flex items-center gap-2.5">
-          <span className="text-sm px-3.5 py-1.5 bg-[#FC75B4]/15 text-[#FC75B4] border border-[#FC75B4]/40 uppercase tracking-widest font-bold pixel-corners-sm">
+          <span className="text-sm px-3.5 py-1.5 bg-[#ff9a3c]/20 text-[#ff9a3c] border border-[#ff9a3c]/50 uppercase tracking-widest font-bold pixel-corners-sm">
             The Living Codex
           </span>
-          <div className="h-[2px] w-16 bg-[#FC75B4]/30" />
+          <div className="h-[2px] w-16 bg-[#ff9a3c]/40" />
         </div>
 
-        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F0E5DB] font-display">
+        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#fbf1d4] font-display">
           Engineer's Codex & Skill Book
         </h2>
 
-        <p className="text-lg sm:text-xl text-[#c7bcab] leading-relaxed font-light">
+        <p className="text-lg sm:text-xl text-[#fbf1d4] leading-relaxed font-light">
           An interactive open pixel-art tome containing 30 coding inventory slots, 4 retro Windows subsystem panels, work experience, and degree honours. Click the bookmark tabs directly behind the top edge of the book to slide them up and turn the pages.
         </p>
       </div>
@@ -412,7 +412,7 @@ export const SkillBook: React.FC = () => {
             onClick={() => setActiveTab('skills')}
             className={`
               relative h-[75px] sm:h-[85px] overflow-visible transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] cursor-pointer group focus:outline-none pointer-events-auto
-              ${activeTab === 'skills' ? 'translate-y-1 sm:translate-y-2 shadow-[0_0_20px_rgba(252,117,180,0.6)]' : 'translate-y-8 sm:translate-y-10 hover:translate-y-5 opacity-90 hover:opacity-100'}
+              ${activeTab === 'skills' ? 'translate-y-1 sm:translate-y-2 shadow-[0_0_20px_rgba(255,154,60,0.6)]' : 'translate-y-8 sm:translate-y-10 hover:translate-y-5 opacity-90 hover:opacity-100'}
             `}
             title="Skills Inventory Tab"
           >
@@ -424,7 +424,7 @@ export const SkillBook: React.FC = () => {
               style={{ imageRendering: 'pixelated' }}
             />
             {activeTab === 'skills' && (
-              <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#FC75B4] shadow-[0_0_6px_#FC75B4]" />
+              <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#ff9a3c] shadow-[0_0_8px_#ff9a3c]" />
             )}
           </button>
 
@@ -433,7 +433,7 @@ export const SkillBook: React.FC = () => {
             onClick={() => setActiveTab('experience')}
             className={`
               relative h-[75px] sm:h-[85px] overflow-visible transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] cursor-pointer group focus:outline-none pointer-events-auto
-              ${activeTab === 'experience' ? 'translate-y-1 sm:translate-y-2 shadow-[0_0_20px_rgba(252,117,180,0.6)]' : 'translate-y-8 sm:translate-y-10 hover:translate-y-5 opacity-90 hover:opacity-100'}
+              ${activeTab === 'experience' ? 'translate-y-1 sm:translate-y-2 shadow-[0_0_20px_rgba(255,154,60,0.6)]' : 'translate-y-8 sm:translate-y-10 hover:translate-y-5 opacity-90 hover:opacity-100'}
             `}
             title="Work Experience Tab"
           >
@@ -445,7 +445,7 @@ export const SkillBook: React.FC = () => {
               style={{ imageRendering: 'pixelated' }}
             />
             {activeTab === 'experience' && (
-              <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#FC75B4] shadow-[0_0_6px_#FC75B4]" />
+              <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#ff9a3c] shadow-[0_0_8px_#ff9a3c]" />
             )}
           </button>
 
@@ -454,7 +454,7 @@ export const SkillBook: React.FC = () => {
             onClick={() => setActiveTab('education')}
             className={`
               relative h-[75px] sm:h-[85px] overflow-visible transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] cursor-pointer group focus:outline-none pointer-events-auto
-              ${activeTab === 'education' ? 'translate-y-1 sm:translate-y-2 shadow-[0_0_20px_rgba(252,117,180,0.6)]' : 'translate-y-8 sm:translate-y-10 hover:translate-y-5 opacity-90 hover:opacity-100'}
+              ${activeTab === 'education' ? 'translate-y-1 sm:translate-y-2 shadow-[0_0_20px_rgba(255,154,60,0.6)]' : 'translate-y-8 sm:translate-y-10 hover:translate-y-5 opacity-90 hover:opacity-100'}
             `}
             title="Education & Certifications Tab"
           >
@@ -466,7 +466,7 @@ export const SkillBook: React.FC = () => {
               style={{ imageRendering: 'pixelated' }}
             />
             {activeTab === 'education' && (
-              <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#FC75B4] shadow-[0_0_6px_#FC75B4]" />
+              <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#ff9a3c] shadow-[0_0_8px_#ff9a3c]" />
             )}
           </button>
 
@@ -517,7 +517,7 @@ export const SkillBook: React.FC = () => {
                             width: `${(10 / 62) * 100}%`,
                             height: `${(10 / 75) * 100}%`,
                           }}
-                          className="group rounded-none bg-[#242118]/40 hover:bg-[#FC75B4]/30 border border-[#756f45]/40 hover:border-[#FC75B4] transition-all flex items-center justify-center cursor-pointer p-0.5 sm:p-1 shadow-sm"
+                          className="group rounded-none bg-[#272343]/60 hover:bg-[#ff9a3c]/30 border border-[#4a4378]/60 hover:border-[#ff9a3c] transition-all flex items-center justify-center cursor-pointer p-0.5 sm:p-1 shadow-sm"
                         >
                           {slot.icon ? (
                             <img
@@ -526,7 +526,7 @@ export const SkillBook: React.FC = () => {
                               className="w-4 h-4 sm:w-6 sm:h-6 object-contain group-hover:scale-110 transition-transform"
                             />
                           ) : (
-                            <span className="text-[9px] sm:text-xs font-bold text-[#F0E5DB] group-hover:text-[#FC75B4] transition-colors font-display select-none">
+                            <span className="text-[9px] sm:text-xs font-bold text-[#fbf1d4] group-hover:text-[#ff9a3c] transition-colors font-display select-none">
                               {slot.placeholder}
                             </span>
                           )}
@@ -536,11 +536,11 @@ export const SkillBook: React.FC = () => {
                   </div>
 
                   {/* Tooltip bar beneath grid */}
-                  <div className="absolute top-[101.5%] left-0 right-0 text-center text-[10px] sm:text-xs text-[#3b3628] font-bold truncate select-none px-1">
+                  <div className="absolute top-[101.5%] left-0 right-0 text-center text-[10px] sm:text-xs text-[#1b1830] font-bold truncate select-none px-1">
                     {hoveredSlot ? (
-                      <span>{hoveredSlot.name}: <strong className="text-[#474329] font-normal">{hoveredSlot.desc} ({hoveredSlot.level})</strong></span>
+                      <span><strong className="text-[#ff9a3c]">{hoveredSlot.name}:</strong> <span className="text-[#1b1830] font-normal">{hoveredSlot.desc} ({hoveredSlot.level})</span></span>
                     ) : (
-                      <span className="text-[#756f45] italic">Hover over any slot to inspect skill capabilities</span>
+                      <span className="text-[#4a4378] italic">Hover over any slot to inspect skill capabilities</span>
                     )}
                   </div>
                 </div>

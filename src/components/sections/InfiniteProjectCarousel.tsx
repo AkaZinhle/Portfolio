@@ -95,40 +95,40 @@ export const InfiniteProjectCarousel: React.FC<InfiniteProjectCarouselProps> = (
     >
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div className="space-y-4 max-w-2xl">
+        <div className="space-y-4 max-w-2xl p-5 sm:p-6 bg-[#272343]/88 border-2 border-[#4a4378] backdrop-blur-md pixel-corners shadow-xl">
           <div className="flex items-center gap-2.5">
-            <span className="text-sm px-3.5 py-1.5 bg-[#FC75B4]/15 text-[#FC75B4] border border-[#FC75B4]/40 uppercase tracking-widest font-bold pixel-corners-sm">
+            <span className="text-sm px-3.5 py-1.5 bg-[#ff9a3c]/20 text-[#ff9a3c] border border-[#ff9a3c]/50 uppercase tracking-widest font-bold pixel-corners-sm">
               The Engineering Foundry
             </span>
-            <div className="h-[2px] w-16 bg-[#FC75B4]/30" />
+            <div className="h-[2px] w-16 bg-[#ff9a3c]/40" />
           </div>
 
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F0E5DB] font-display">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#fbf1d4] font-display">
             Infinite Project Showcase
           </h2>
 
-          <p className="text-lg sm:text-xl text-[#c7bcab] leading-relaxed font-light">
-            Continuous 3D spatial carousel of all 7 flagship AI engineering systems. Drag or use arrows to rotate the showcase, then <strong className="text-[#FC75B4] font-bold">pull the top-right tab</strong> to peel any holographic card.
+          <p className="text-lg sm:text-xl text-[#fbf1d4] leading-relaxed font-light">
+            Continuous 3D spatial carousel of all 7 flagship AI engineering systems. Drag or use arrows to rotate the showcase, then <strong className="text-[#ff9a3c] font-bold">pull the top-right tab</strong> to peel any holographic card.
           </p>
         </div>
 
         {/* Carousel Navigation Controls (Manual only - AutoDrift completely removed) */}
-        <div className="flex items-center gap-3 p-1.5 bg-[#1d1b15]/90 border-2 border-[#474329] shrink-0 pixel-corners">
+        <div className="flex items-center gap-3 p-2 bg-[#272343]/90 border-2 border-[#4a4378] backdrop-blur-md shrink-0 pixel-corners shadow-xl">
           <button
             onClick={() => setCurrentIndex((prev) => (prev - 1 + totalProjects) % totalProjects)}
-            className="p-3 bg-white/5 hover:bg-[#FC75B4]/20 text-[#F0E5DB] hover:text-[#FC75B4] border border-white/10 hover:border-[#FC75B4]/40 transition-all cursor-pointer pixel-corners-sm"
+            className="p-3 bg-[#1b1830] hover:bg-[#352f5a] text-[#fbf1d4] hover:text-[#ff9a3c] border border-[#4a4378] hover:border-[#ff9a3c]/50 transition-all cursor-pointer pixel-corners-sm"
             aria-label="Previous Project"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
 
-          <span className="text-xs font-mono font-bold text-[#FC75B4] px-2">
+          <span className="text-xs font-mono font-bold text-[#ff9a3c] px-2">
             {activeProject.number} / 0{totalProjects}
           </span>
 
           <button
             onClick={() => setCurrentIndex((prev) => (prev + 1) % totalProjects)}
-            className="p-3 bg-white/5 hover:bg-[#FC75B4]/20 text-[#F0E5DB] hover:text-[#FC75B4] border border-white/10 hover:border-[#FC75B4]/40 transition-all cursor-pointer pixel-corners-sm"
+            className="p-3 bg-[#1b1830] hover:bg-[#352f5a] text-[#fbf1d4] hover:text-[#ff9a3c] border border-[#4a4378] hover:border-[#ff9a3c]/50 transition-all cursor-pointer pixel-corners-sm"
             aria-label="Next Project"
           >
             <ChevronRight className="w-5 h-5" />
@@ -216,7 +216,7 @@ export const InfiniteProjectCarousel: React.FC<InfiniteProjectCarouselProps> = (
       </div>
 
       {/* BOTTOM THUMBNAIL TRACKER & QUICK JUMP PILLS */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-white/10">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-[#272343]/90 border-2 border-[#4a4378] backdrop-blur-md pixel-corners shadow-xl">
         <div className="flex items-center gap-2">
           {PROJECTS.map((p, idx) => (
             <button
@@ -224,18 +224,18 @@ export const InfiniteProjectCarousel: React.FC<InfiniteProjectCarouselProps> = (
               onClick={() => setCurrentIndex(idx)}
               className={`transition-all duration-300 cursor-pointer pixel-corners-sm ${
                 idx === currentIndex
-                  ? 'w-10 h-3 bg-[#FC75B4] shadow-[0_0_15px_rgba(252,117,180,0.7)]'
-                  : 'w-3 h-3 bg-white/20 hover:bg-[#FC75B4]/50'
+                  ? 'w-10 h-3 bg-[#ff9a3c] shadow-[0_0_15px_rgba(255,154,60,0.7)]'
+                  : 'w-3 h-3 bg-[#4a4378] hover:bg-[#8fc3e8]/60'
               }`}
               title={`Jump to ${p.title}`}
             />
           ))}
         </div>
 
-        <div className="flex items-center gap-3 text-sm text-[#c7bcab]">
-          <span className="font-bold text-[#FC75B4] font-display">{activeProject.number}</span>
-          <span className="text-[#F0E5DB] font-semibold">{activeProject.title}</span>
-          <span className="text-[#8e8472]">• {activeProject.category}</span>
+        <div className="flex items-center gap-3 text-sm text-[#fbf1d4]">
+          <span className="font-bold text-[#ff9a3c] font-display">{activeProject.number}</span>
+          <span className="text-[#fbf1d4] font-semibold">{activeProject.title}</span>
+          <span className="text-[#b8b0d4]">• {activeProject.category}</span>
         </div>
       </div>
     </section>
