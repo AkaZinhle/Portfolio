@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { ThinkingOrb } from '../effects/ThinkingOrb';
 import { SakugaButton } from '../effects/SakugaButton';
-import { Sparkles, Volume2, VolumeX, FileDown, Github, Linkedin, Menu, X } from 'lucide-react';
+import { Sparkles, Volume2, VolumeX, FileDown, Github, Linkedin, Menu, X, EyeOff } from 'lucide-react';
 
 interface NavbarProps {
   envEnabled: boolean;
   onToggleEnv: () => void;
   audioPlaying: boolean;
   onToggleAudio: () => void;
+  onToggleForeground: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -15,6 +16,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onToggleEnv,
   audioPlaying,
   onToggleAudio,
+  onToggleForeground,
 }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -28,8 +30,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   const navLinks = [
-    { name: 'Selected Work', href: '#projects' },
-    { name: 'Skill Codex', href: '#capabilities' },
+    { name: 'Skills & Codex', href: '#capabilities' },
+    { name: 'Projects', href: '#projects' },
     { name: 'About', href: '#about' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -76,7 +78,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </nav>
 
         {/* Action Controls & External Links */}
-        <div className="hidden lg:flex items-center gap-2.5">
+        <div className="hidden md:flex items-center gap-2">
           {/* Environment Effects Toggle */}
           <button
             onClick={onToggleEnv}
@@ -106,44 +108,62 @@ export const Navbar: React.FC<NavbarProps> = ({
             {audioPlaying ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
           </button>
 
-          <div className="h-5 w-[1px] bg-[#4a4378] mx-1" />
-
-          {/* GitHub Link */}
-          <a
-            href="https://github.com/AkaZinhle"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="GitHub Profile"
-            className="p-2.5 bg-[#272343] text-[#fbf1d4] hover:text-[#ff9a3c] border border-[#4a4378] hover:border-[#ff9a3c]/60 hover:bg-[#352f5a] transition-all duration-200 cursor-pointer pixel-corners-sm"
+          {/* Hide Foreground / View World Toggle */}
+          <button
+            onClick={onToggleForeground}
+            title="Hide foreground to view living pixel world (Hotkey: H)"
+            aria-label="Hide foreground to view living pixel world"
+            className="px-3 py-2 bg-[#272343] hover:bg-[#352f5a] text-[#b8b0d4] hover:text-[#fbf1d4] border border-[#4a4378] hover:border-[#ff9a3c]/60 text-xs flex items-center gap-1.5 transition-all duration-200 cursor-pointer pixel-corners-sm"
           >
-            <Github className="w-4 h-4" />
-          </a>
+            <EyeOff className="w-3.5 h-3.5 text-[#ff9a3c]" />
+            <span className="text-xs font-bold font-mono">HIDE UI</span>
+          </button>
 
-          {/* LinkedIn Link */}
-          <a
-            href="https://linkedin.com/in/wongai-rankin"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="LinkedIn Profile"
-            className="p-2.5 bg-[#272343] text-[#fbf1d4] hover:text-[#ff9a3c] border border-[#4a4378] hover:border-[#ff9a3c]/60 hover:bg-[#352f5a] transition-all duration-200 cursor-pointer pixel-corners-sm"
-          >
-            <Linkedin className="w-4 h-4" />
-          </a>
-
-          {/* Download CV Sakuga Button */}
-          <a href="/assets/docs/CV_W.Rankin.pdf" download="CV_Wongai_Rankin.pdf">
-            <SakugaButton
-              variant="primary"
-              size="sm"
-              icon={<FileDown className="w-4 h-4" />}
+          {/* Social Links & CV (Desktop/Large Screens) */}
+          <div className="hidden xl:flex items-center gap-2 pl-1 border-l border-[#4a4378]">
+            <a
+              href="https://github.com/AkaZinhle"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="GitHub Profile"
+              className="p-2.5 bg-[#272343] text-[#fbf1d4] hover:text-[#ff9a3c] border border-[#4a4378] hover:border-[#ff9a3c]/60 hover:bg-[#352f5a] transition-all duration-200 cursor-pointer pixel-corners-sm"
             >
-              Download CV
-            </SakugaButton>
-          </a>
+              <Github className="w-4 h-4" />
+            </a>
+
+            <a
+              href="https://linkedin.com/in/wongai-rankin"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="LinkedIn Profile"
+              className="p-2.5 bg-[#272343] text-[#fbf1d4] hover:text-[#ff9a3c] border border-[#4a4378] hover:border-[#ff9a3c]/60 hover:bg-[#352f5a] transition-all duration-200 cursor-pointer pixel-corners-sm"
+            >
+              <Linkedin className="w-4 h-4" />
+            </a>
+
+            <a href="/assets/docs/CV_W.Rankin.pdf" download="CV_Wongai_Rankin.pdf">
+              <SakugaButton
+                variant="primary"
+                size="sm"
+                icon={<FileDown className="w-4 h-4" />}
+              >
+                Download CV
+              </SakugaButton>
+            </a>
+          </div>
         </div>
 
         {/* Mobile Hamburger Toggle */}
         <div className="flex items-center gap-2 md:hidden">
+          <button
+            onClick={onToggleForeground}
+            title="Hide foreground to view living pixel world"
+            aria-label="Hide foreground to view living pixel world"
+            className="p-2 bg-[#272343] hover:bg-[#352f5a] text-[#b8b0d4] hover:text-[#fbf1d4] border border-[#4a4378] pixel-corners-sm"
+          >
+            <EyeOff className="w-4 h-4 text-[#ff9a3c]" />
+          </button>
+
           <button
             onClick={onToggleEnv}
             aria-label="Toggle Environment Effects"

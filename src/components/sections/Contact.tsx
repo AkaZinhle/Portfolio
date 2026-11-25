@@ -70,7 +70,7 @@ export const Contact: React.FC = () => {
         </div>
 
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#fbf1d4] font-display">
-          Initiate Contact & Engineering Collaboration
+          Contact and Collaborate
         </h2>
 
         <p className="text-sm sm:text-base text-[#fbf1d4] leading-relaxed font-light">

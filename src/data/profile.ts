@@ -19,6 +19,6 @@ Dedicated to building resilient, production-quality systems where backend machin
     { value: '7+', label: 'Years Coding', desc: 'Python, C++, Java, TypeScript' },
     { value: '3.49', label: 'Degree CGPA', desc: "Dean's List (August 2025)" },
     { value: '3', label: 'Flagship AI Systems', desc: 'VoltStock, PCB AOI, Risses.ai' },
-    { value: '5', label: 'AI Compute Rigs Built', desc: 'Custom Workstations & Labs' }
+    { value: '1', label: 'Dog', desc: 'Loyal Companion' }
   ]
 };

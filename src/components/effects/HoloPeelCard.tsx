@@ -176,7 +176,7 @@ const HoloPeelCardComponent: React.FC<HoloPeelCardProps> = ({
           >
             <p className="text-sm text-[#b8b0d4] leading-relaxed font-light">{project.problemStatement}</p>
             <p className="text-xs text-[#fbf1d4] font-mono leading-relaxed bg-[#272343] p-2.5 border border-[#4a4378] pixel-corners-sm">
-              <strong className="text-[#ff9a3c]">Architecture Solution:</strong> {project.solution}
+              <strong className="text-[#ff9a3c]">Architecture Solution:</strong> {project.architecture?.summary || project.problemStatement}
             </p>
           </div>
         </div>

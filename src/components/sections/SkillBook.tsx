@@ -393,11 +393,11 @@ export const SkillBook: React.FC = () => {
         </div>
 
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#fbf1d4] font-display">
-          Engineer's Codex & Skill Book
+          Skills, Experience & Education
         </h2>
 
         <p className="text-lg sm:text-xl text-[#fbf1d4] leading-relaxed font-light">
-          An interactive open pixel-art tome containing 30 coding inventory slots, 4 retro Windows subsystem panels, work experience, and degree honours. Click the bookmark tabs directly behind the top edge of the book to slide them up and turn the pages.
+          Click the bookmark tags to change sections
         </p>
       </div>
 

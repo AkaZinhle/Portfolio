@@ -119,11 +119,11 @@ export const InfiniteProjectCarousel: React.FC<InfiniteProjectCarouselProps> = (
           </div>
 
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#fbf1d4] font-display">
-            Infinite Project Showcase
+            Projects
           </h2>
 
           <p className="text-lg sm:text-xl text-[#fbf1d4] leading-relaxed font-light">
-            Continuous 3D spatial carousel of all 7 flagship AI engineering systems. Drag or use arrows to rotate the showcase, then <strong className="text-[#ff9a3c] font-bold">pull the top-right tab</strong> to peel any holographic card.
+            Drag or use arrows to rotate the showcase, then <strong className="text-[#ff9a3c] font-bold">pull the top-right tab</strong> to peel any holographic card.
           </p>
         </div>
 

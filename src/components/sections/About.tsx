@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 
 export const About: React.FC = () => {
-  const [photoMode, setPhotoMode] = useState<'real' | 'pixel'>('real');
+  const [photoMode, setPhotoMode] = useState<'real' | 'pixel'>('pixel');
 
   const principles = [
     {
@@ -52,7 +52,7 @@ export const About: React.FC = () => {
         </div>
 
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#fbf1d4] font-display">
-          The Engineer Behind the Systems
+          About me
         </h2>
 
         <p className="text-sm sm:text-base text-[#fbf1d4] leading-relaxed font-light">
@@ -62,19 +62,41 @@ export const About: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         {/* Left Col: Interactive Portrait Flip Card (5 cols) */}
-        <div className="lg:col-span-5 space-y-4">
+        <div className="lg:col-span-5 space-y-4 max-w-[400px] mx-auto w-full">
           <HoloCard intensity={1.05} className="w-full">
             <div className="editorial-card p-6 border-2 border-[#4a4378] bg-[#272343]/95 space-y-4 shadow-2xl pixel-corners-lg">
               {/* Photo Display Area with Flip Toggle */}
-              <div className="relative aspect-[4/5] overflow-hidden bg-[#1b1830] border-2 border-[#4a4378] group pixel-corners">
+              <div className="relative aspect-[4/5] overflow-hidden bg-[#1b1830] border-2 border-[#4a4378] group pixel-corners flex items-center justify-center">
+                {/* Pixel Mode Backing Environment / Pedestal */}
+                {photoMode === 'pixel' && (
+                  <div className="absolute inset-0 pointer-events-none flex flex-col items-center justify-end pb-7">
+                    {/* Subtle retro grid pattern */}
+                    <div 
+                      className="absolute inset-0 opacity-20"
+                      style={{
+                        backgroundImage: 'linear-gradient(to right, #4a4378 1px, transparent 1px), linear-gradient(to bottom, #4a4378 1px, transparent 1px)',
+                        backgroundSize: '16px 16px'
+                      }}
+                    />
+                    {/* Soft radial glow */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#272343]/60 via-[#ff9a3c]/10 to-transparent" />
+                    {/* Ground shadow beneath sprite */}
+                    <div className="w-28 h-3.5 bg-[#0c0a2a]/80 rounded-[50%] blur-[1px] relative z-0" />
+                  </div>
+                )}
+
                 <img
                   src={photoMode === 'real' ? '/assets/images/Me_real.png' : '/assets/images/Me_pixel.png'}
                   alt="Wongai Rankin"
-                  className="w-full h-full object-cover transition-all duration-500 ease-out"
+                  className={
+                    photoMode === 'real'
+                      ? "w-full h-full object-cover transition-all duration-500 ease-out"
+                      : "h-[78%] w-auto max-w-[85%] object-contain py-2 z-10 transition-all duration-500 ease-out pixelated filter drop-shadow-[0_10px_16px_rgba(12,10,42,0.85)]"
+                  }
                 />
 
                 {/* Mode Indicator Overlay Badge */}
-                <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 bg-[#1b1830]/90 border border-[#4a4378] backdrop-blur-md pixel-corners-sm">
+                <div className="absolute top-3 left-3 flex items-center gap-2 px-2.5 py-1.5 bg-[#1b1830]/90 border border-[#4a4378] backdrop-blur-md pixel-corners-sm z-20">
                   <ThinkingOrb state={photoMode === 'real' ? 'working' : 'shaping'} size={18} theme="cyan" />
                   <span className="text-xs font-mono text-[#8fc3e8] font-medium">
                     {photoMode === 'real' ? 'Real-World Profile' : 'Pixel Avatar Realm'}
@@ -84,7 +106,7 @@ export const About: React.FC = () => {
                 {/* Flip Button */}
                 <button
                   onClick={() => setPhotoMode(photoMode === 'real' ? 'pixel' : 'real')}
-                  className="absolute bottom-4 right-4 p-3 bg-[#1b1830]/90 hover:bg-[#352f5a] border border-[#4a4378] hover:border-[#ff9a3c] text-[#fbf1d4] hover:text-[#ff9a3c] shadow-2xl transition-all cursor-pointer flex items-center gap-2 text-xs font-mono pixel-corners-sm"
+                  className="absolute bottom-3 right-3 p-2.5 bg-[#1b1830]/90 hover:bg-[#352f5a] border border-[#4a4378] hover:border-[#ff9a3c] text-[#fbf1d4] hover:text-[#ff9a3c] shadow-2xl transition-all cursor-pointer flex items-center gap-2 text-xs font-mono pixel-corners-sm z-20"
                   title="Toggle Pixel Art / Real Photograph"
                 >
                   <RefreshCw className="w-4 h-4" />

@@ -9,9 +9,9 @@ export const PixelValleyCanvas: React.FC<PixelValleyCanvasProps> = ({ enabled = 
   const hudRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const cv = canvasRef.current;
+    const cv = canvasRef.current!;
     if (!cv) return;
-    const ctx = cv.getContext('2d');
+    const ctx = cv.getContext('2d') as CanvasRenderingContext2D;
     if (!ctx) return;
 
     ctx.imageSmoothingEnabled = false;
@@ -74,7 +74,7 @@ export const PixelValleyCanvas: React.FC<PixelValleyCanvasProps> = ({ enabled = 
         PT[k] = (Math.hypot(x - C, y - C) < 2.3 ||
           BRG(i, j) ||
           RD(x, y) ||
-          segD(x, y, C, C, PX - 3.2, PY + 2, PX - 3.2, PY + 2) < 0.7 ||
+          segD(x, y, C, C, PX - 3.2, PY + 2) < 0.7 ||
           TENTS.some(t => segD(x, y, C, C, t[0] + 0.5, t[1] + 0.5) < 0.55 + nz(x, y) * 0.3)) && LD[k] ? 1 : 0;
       }
     }
