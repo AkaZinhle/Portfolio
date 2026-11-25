@@ -107,7 +107,7 @@ export const App: React.FC = () => {
           onClick={() => setKoiModalOpen(false)}
         >
           <div
-            className="editorial-card rounded-3xl p-6 border-2 border-[#474329] bg-[#1e1c15] max-w-md w-full space-y-4 text-[#F0E5DB]"
+            className="editorial-card p-6 border-2 border-[#474329] bg-[#1e1c15] max-w-md w-full space-y-4 text-[#F0E5DB] pixel-corners-lg"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between pb-3 border-b-2 border-[#474329]">
@@ -117,7 +117,7 @@ export const App: React.FC = () => {
               </div>
               <button
                 onClick={() => setKoiModalOpen(false)}
-                className="p-1 rounded-lg hover:bg-white/10 text-[#F0E5DB] hover:text-[#FC75B4] cursor-pointer"
+                className="p-1.5 hover:bg-white/10 text-[#F0E5DB] hover:text-[#FC75B4] cursor-pointer pixel-corners-sm"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -127,7 +127,7 @@ export const App: React.FC = () => {
               This living pixel koi is influenced by real development activity on GitHub (<strong>@AkaZinhle</strong>). Swimming velocity, ripples, and scale patterns reflect recent commits across VoltStock, PCB Defect Detector, and Risses.ai.
             </p>
 
-            <div className="p-3.5 rounded-xl bg-[#181611] border border-[#474329] space-y-1.5 text-xs text-[#F0E5DB]">
+            <div className="p-3.5 bg-[#181611] border border-[#474329] space-y-1.5 text-xs text-[#F0E5DB] pixel-corners">
               <div className="flex justify-between">
                 <span className="text-[#8e8472]">Account:</span>
                 <span className="text-[#FC75B4] font-bold">github.com/AkaZinhle</span>
@@ -147,7 +147,7 @@ export const App: React.FC = () => {
                 href="https://github.com/AkaZinhle"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded-xl bg-[#FC75B4]/20 hover:bg-[#FC75B4]/30 border border-[#FC75B4]/50 text-sm font-bold text-[#FC75B4] flex items-center gap-2 transition-colors cursor-pointer"
+                className="px-4 py-2 bg-[#FC75B4]/20 hover:bg-[#FC75B4]/30 border border-[#FC75B4]/50 text-sm font-bold text-[#FC75B4] flex items-center gap-2 transition-colors cursor-pointer pixel-corners-sm"
               >
                 <Github className="w-4 h-4" />
                 Open GitHub Profile

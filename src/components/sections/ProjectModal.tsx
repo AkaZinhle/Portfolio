@@ -48,13 +48,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
       className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200"
     >
       <div 
-        className="relative w-full max-w-5xl bg-[#1e1c15] border-2 border-[#474329] rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh] text-[#F0E5DB]"
+        className="relative w-full max-w-5xl bg-[#1e1c15] border-2 border-[#474329] shadow-2xl overflow-hidden flex flex-col max-h-[92vh] text-[#F0E5DB] pixel-corners-lg"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header Bar */}
         <div className="sticky top-0 z-20 flex items-center justify-between px-6 py-4 bg-[#242118] border-b-2 border-[#474329] backdrop-blur-md">
           <div className="flex items-center gap-3">
-            <span className="text-sm px-3 py-1 rounded-xl bg-[#FC75B4]/20 text-[#FC75B4] border border-[#FC75B4]/40 font-bold">
+            <span className="text-sm px-3 py-1 bg-[#FC75B4]/20 text-[#FC75B4] border border-[#FC75B4]/40 font-bold pixel-corners-sm">
               CASE STUDY {project.number}
             </span>
             <span className="text-sm text-[#c7bcab] hidden sm:inline">
@@ -68,7 +68,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 href={project.repoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-[#181611] hover:bg-[#474329] border border-white/10 text-[#F0E5DB] transition-colors"
+                className="p-2.5 bg-[#181611] hover:bg-[#474329] border border-white/10 text-[#F0E5DB] transition-colors pixel-corners-sm"
                 title="View GitHub Repository"
               >
                 <Github className="w-4 h-4" />
@@ -76,7 +76,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             )}
             <button
               onClick={onClose}
-              className="p-2.5 rounded-xl bg-[#181611] hover:bg-[#474329] border border-white/10 text-[#F0E5DB] transition-colors cursor-pointer"
+              className="p-2.5 bg-[#181611] hover:bg-[#474329] border border-white/10 text-[#F0E5DB] transition-colors cursor-pointer pixel-corners-sm"
               aria-label="Close Case Study"
             >
               <X className="w-4 h-4" />
@@ -106,7 +106,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               {project.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="px-3 py-1 rounded-lg bg-[#181611] border border-[#474329] text-xs sm:text-sm text-[#F0E5DB]"
+                  className="px-3 py-1 bg-[#181611] border border-[#474329] text-xs sm:text-sm text-[#F0E5DB] pixel-corners-sm"
                 >
                   {tech}
                 </span>
@@ -118,7 +118,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           <div className="flex items-center gap-2 border-b-2 border-[#474329] pb-3 overflow-x-auto">
             <button
               onClick={() => setActiveTab('architecture')}
-              className={`px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${
+              className={`px-4 py-2 text-sm font-bold transition-all flex items-center gap-2 cursor-pointer pixel-corners-sm ${
                 activeTab === 'architecture'
                   ? 'bg-[#FC75B4] text-[#12110d] shadow-md'
                   : 'text-[#c7bcab] hover:text-[#F0E5DB] hover:bg-[#474329]/40'
@@ -131,7 +131,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             {project.agentWorkflow && (
               <button
                 onClick={() => setActiveTab('agent')}
-                className={`px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${
+                className={`px-4 py-2 text-sm font-bold transition-all flex items-center gap-2 cursor-pointer pixel-corners-sm ${
                   activeTab === 'agent'
                     ? 'bg-[#FC75B4] text-[#12110d] shadow-md'
                     : 'text-[#c7bcab] hover:text-[#F0E5DB] hover:bg-[#474329]/40'
@@ -144,7 +144,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
             <button
               onClick={() => setActiveTab('implementation')}
-              className={`px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${
+              className={`px-4 py-2 text-sm font-bold transition-all flex items-center gap-2 cursor-pointer pixel-corners-sm ${
                 activeTab === 'implementation'
                   ? 'bg-[#FC75B4] text-[#12110d] shadow-md'
                   : 'text-[#c7bcab] hover:text-[#F0E5DB] hover:bg-[#474329]/40'
@@ -156,7 +156,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
             <button
               onClick={() => setActiveTab('gallery')}
-              className={`px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${
+              className={`px-4 py-2 text-sm font-bold transition-all flex items-center gap-2 cursor-pointer pixel-corners-sm ${
                 activeTab === 'gallery'
                   ? 'bg-[#FC75B4] text-[#12110d] shadow-md'
                   : 'text-[#c7bcab] hover:text-[#F0E5DB] hover:bg-[#474329]/40'
@@ -171,7 +171,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           {activeTab === 'architecture' && (
             <div className="space-y-8 animate-in fade-in duration-150">
               {/* Problem Statement Box */}
-              <div className="p-5 rounded-2xl bg-[#242118] border border-[#474329] space-y-2">
+              <div className="p-5 bg-[#242118] border border-[#474329] space-y-2 pixel-corners">
                 <div className="flex items-center gap-2 text-sm uppercase tracking-wider text-[#c9be83] font-bold font-display">
                   <AlertCircle className="w-4 h-4 text-[#c9be83]" />
                   Industrial Problem Statement
@@ -195,7 +195,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                   {project.architecture.flow.map((step, idx) => (
                     <div
                       key={idx}
-                      className="p-4 rounded-xl bg-[#242118] border border-[#474329] space-y-1 relative"
+                      className="p-4 bg-[#242118] border border-[#474329] space-y-1 relative pixel-corners-sm"
                     >
                       <div className="text-xs text-[#FC75B4] font-bold">
                         STAGE 0{idx + 1}
@@ -215,15 +215,15 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                       {project.architecture.diagramNodes.map((node, idx) => (
                         <div
                           key={idx}
-                          className="p-4 rounded-xl bg-[#181611] border border-[#474329] flex items-start gap-3"
+                          className="p-4 bg-[#181611] border border-[#474329] flex items-start gap-3 pixel-corners"
                         >
-                          <div className="p-2.5 rounded-xl bg-[#242118] text-[#FC75B4] shrink-0 mt-0.5">
+                          <div className="p-2.5 bg-[#242118] text-[#FC75B4] shrink-0 mt-0.5 pixel-corners-sm">
                             <Cpu className="w-4 h-4" />
                           </div>
                           <div>
                             <div className="text-base font-bold text-[#F0E5DB] flex items-center gap-2">
                               {node.name}
-                              <span className="text-xs px-2 py-0.5 rounded bg-[#474329] text-[#F0E5DB] uppercase">
+                              <span className="text-xs px-2 py-0.5 bg-[#474329] text-[#F0E5DB] uppercase pixel-corners-sm">
                                 {node.type}
                               </span>
                             </div>
@@ -243,7 +243,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           {/* TAB 2: Agent Reasoning Pipeline */}
           {activeTab === 'agent' && project.agentWorkflow && (
             <div className="space-y-6 animate-in fade-in duration-150">
-              <div className="p-4 rounded-xl bg-[#FC75B4]/10 border border-[#FC75B4]/30 text-sm text-[#F0E5DB] leading-relaxed flex items-start gap-3">
+              <div className="p-4 bg-[#FC75B4]/10 border border-[#FC75B4]/30 text-sm text-[#F0E5DB] leading-relaxed flex items-start gap-3 pixel-corners-sm">
                 <Sparkles className="w-5 h-5 text-[#FC75B4] shrink-0 mt-0.5" />
                 <span>
                   <strong>Autonomous Multi-Step Reasoning Lifecycle:</strong> Each step dynamically activates specialized tools and adjusts internal agent thought loops.
@@ -254,11 +254,11 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 {project.agentWorkflow.map((step) => (
                   <div
                     key={step.step}
-                    className="p-4 rounded-2xl bg-[#242118] border border-[#474329] flex flex-col sm:flex-row sm:items-center gap-4 hover:border-[#FC75B4] transition-all"
+                    className="p-4 bg-[#242118] border border-[#474329] flex flex-col sm:flex-row sm:items-center gap-4 hover:border-[#FC75B4] transition-all pixel-corners"
                   >
                     {/* Thinking Orb Indicator */}
                     <div className="flex items-center gap-3 shrink-0">
-                      <div className="p-2.5 rounded-2xl bg-[#181611] border border-[#474329] flex items-center justify-center">
+                      <div className="p-2.5 bg-[#181611] border border-[#474329] flex items-center justify-center pixel-corners-sm">
                         <ThinkingOrb state={step.orbState} size={42} theme="cyan" />
                       </div>
                       <div className="sm:hidden text-sm text-[#FC75B4] font-bold">
@@ -281,7 +281,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
                     {/* Tool Badge */}
                     <div className="shrink-0 text-right">
-                      <span className="inline-block px-3 py-1 rounded-lg bg-[#181611] border border-[#474329] text-xs text-[#c9be83]">
+                      <span className="inline-block px-3 py-1 bg-[#181611] border border-[#474329] text-xs text-[#c9be83] pixel-corners-sm">
                         {step.tool}
                       </span>
                     </div>
@@ -303,7 +303,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                   {project.engineeringChallenges.map((item, idx) => (
                     <div
                       key={idx}
-                      className="p-4 rounded-2xl bg-[#242118] border border-[#474329] space-y-2"
+                      className="p-4 bg-[#242118] border border-[#474329] space-y-2 pixel-corners"
                     >
                       <div className="text-sm font-bold text-[#FC75B4] flex items-start gap-2">
                         <span className="shrink-0">CHALLENGE:</span>
@@ -325,7 +325,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 </h3>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-sm text-[#F0E5DB]">
                   {project.implementation.keyHighlights.map((hl, idx) => (
-                    <li key={idx} className="flex items-start gap-2 p-3 rounded-xl bg-[#242118] border border-[#474329]">
+                    <li key={idx} className="flex items-start gap-2 p-3 bg-[#242118] border border-[#474329] pixel-corners-sm">
                       <CheckCircle2 className="w-4 h-4 text-[#FC75B4] shrink-0 mt-0.5" />
                       <span>{hl}</span>
                     </li>
@@ -342,7 +342,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                   {project.results.map((res, idx) => (
                     <div
                       key={idx}
-                      className="p-4 rounded-xl bg-[#242118] border border-[#474329] text-center space-y-1"
+                      className="p-4 bg-[#242118] border border-[#474329] text-center space-y-1 pixel-corners-sm"
                     >
                       <div className="text-2xl font-bold font-mono text-[#FC75B4]">
                         {res.metric}
@@ -364,7 +364,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                   <div
                     key={idx}
                     onClick={() => setSelectedImage(shot.url)}
-                    className="group relative rounded-2xl overflow-hidden border-2 border-[#474329] bg-black cursor-pointer hover:border-[#FC75B4] transition-all shadow-md"
+                    className="group relative overflow-hidden border-2 border-[#474329] bg-black cursor-pointer hover:border-[#FC75B4] transition-all shadow-md pixel-corners"
                   >
                     <div className="aspect-video w-full overflow-hidden bg-black/80">
                       <img
@@ -393,7 +393,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         {/* Modal Footer */}
         <div className="px-6 py-4 bg-[#242118] border-t-2 border-[#474329] flex items-center justify-between">
           <div className="text-xs text-[#c7bcab]">
-            Press <kbd className="px-2 py-0.5 rounded bg-[#181611] text-[#FC75B4] border border-[#474329]">ESC</kbd> to exit case study
+            Press <kbd className="px-2 py-0.5 bg-[#181611] text-[#FC75B4] border border-[#474329] pixel-corners-sm">ESC</kbd> to exit case study
           </div>
           {project.repoUrl && (
             <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
@@ -414,7 +414,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           <img
             src={selectedImage}
             alt="Fullscreen Preview"
-            className="max-w-full max-h-[90vh] object-contain rounded-xl border-2 border-[#FC75B4] shadow-2xl"
+            className="max-w-full max-h-[90vh] object-contain border-2 border-[#FC75B4] shadow-2xl pixel-corners-lg"
           />
         </div>
       )}

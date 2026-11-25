@@ -91,17 +91,17 @@ export const HoloCard: React.FC<HoloCardProps> = ({
 
       {/* Holographic Diffraction Overlay */}
       <div
-        className="pointer-events-none absolute inset-0 z-20 rounded-2xl transition-opacity duration-300 mix-blend-screen overflow-hidden"
+        className="pointer-events-none absolute inset-0 z-20 pixel-corners-lg transition-opacity duration-300 mix-blend-screen overflow-hidden"
         style={holoStyle}
       />
 
       {/* Subtle iridescent border rim */}
       <div
-        className={`pointer-events-none absolute -inset-[1px] rounded-2xl z-20 transition-opacity duration-300 ${
+        className={`pointer-events-none absolute -inset-[1px] pixel-corners-lg z-20 transition-opacity duration-300 ${
           isHovered ? 'opacity-100' : 'opacity-0'
         }`}
         style={{
-          background: 'linear-gradient(135deg, rgba(34, 211, 238, 0.4), rgba(168, 85, 247, 0.3), rgba(245, 158, 11, 0.3))',
+          background: 'linear-gradient(135deg, rgba(252, 117, 180, 0.4), rgba(71, 67, 41, 0.4), rgba(240, 229, 219, 0.3))',
           mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
           maskComposite: 'exclude',
           WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',

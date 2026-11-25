@@ -45,17 +45,17 @@ export const About: React.FC = () => {
       {/* Section Header */}
       <div className="space-y-4 max-w-3xl">
         <div className="flex items-center gap-2">
-          <span className="font-mono text-xs px-2.5 py-1 rounded bg-brand-aqua/10 text-brand-aqua border border-brand-aqua/30 uppercase tracking-widest font-semibold">
+          <span className="font-mono text-xs px-2.5 py-1 bg-[#FC75B4]/15 text-[#FC75B4] border border-[#FC75B4]/40 uppercase tracking-widest font-semibold pixel-corners-sm">
             Philosophy & Bio
           </span>
-          <div className="h-[1px] w-12 bg-brand-aqua/30" />
+          <div className="h-[1px] w-12 bg-[#FC75B4]/30" />
         </div>
 
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F0E5DB] font-display">
           The Engineer Behind the Systems
         </h2>
 
-        <p className="text-sm sm:text-base text-slate-400 leading-relaxed font-light">
+        <p className="text-sm sm:text-base text-[#c7bcab] leading-relaxed font-light">
           Bridging rigorous academic research with 7 years of software development and industrial AI engineering.
         </p>
       </div>
@@ -64,9 +64,9 @@ export const About: React.FC = () => {
         {/* Left Col: Interactive Portrait Flip Card (5 cols) */}
         <div className="lg:col-span-5 space-y-4">
           <HoloCard intensity={1.05} className="w-full">
-            <div className="editorial-card rounded-3xl p-6 border border-white/10 bg-[#121520]/90 space-y-4 shadow-2xl">
+            <div className="editorial-card p-6 border border-[#474329] bg-[#1e1c15]/95 space-y-4 shadow-2xl pixel-corners-lg">
               {/* Photo Display Area with Flip Toggle */}
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-slate-950 border border-white/10 group">
+              <div className="relative aspect-[4/5] overflow-hidden bg-black border border-[#474329] group pixel-corners">
                 <img
                   src={photoMode === 'real' ? '/assets/images/Me_real.png' : '/assets/images/Me_pixel.png'}
                   alt="Wongai Rankin"
@@ -74,9 +74,9 @@ export const About: React.FC = () => {
                 />
 
                 {/* Mode Indicator Overlay Badge */}
-                <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-950/80 border border-white/10 backdrop-blur-md">
+                <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 bg-[#12110d]/90 border border-white/20 backdrop-blur-md pixel-corners-sm">
                   <ThinkingOrb state={photoMode === 'real' ? 'working' : 'shaping'} size={18} theme="cyan" />
-                  <span className="text-xs font-mono text-brand-aqua font-medium">
+                  <span className="text-xs font-mono text-[#FC75B4] font-medium">
                     {photoMode === 'real' ? 'Real-World Profile' : 'Pixel Avatar Realm'}
                   </span>
                 </div>
@@ -84,7 +84,7 @@ export const About: React.FC = () => {
                 {/* Flip Button */}
                 <button
                   onClick={() => setPhotoMode(photoMode === 'real' ? 'pixel' : 'real')}
-                  className="absolute bottom-4 right-4 p-3 rounded-2xl bg-slate-950/90 hover:bg-slate-900 border border-brand-aqua/40 text-brand-aqua shadow-2xl transition-all cursor-pointer flex items-center gap-2 text-xs font-mono"
+                  className="absolute bottom-4 right-4 p-3 bg-[#181611]/90 hover:bg-[#474329]/60 border border-[#FC75B4]/50 text-[#FC75B4] shadow-2xl transition-all cursor-pointer flex items-center gap-2 text-xs font-mono pixel-corners-sm"
                   title="Toggle Pixel Art / Real Photograph"
                 >
                   <RefreshCw className="w-4 h-4" />
@@ -94,8 +94,8 @@ export const About: React.FC = () => {
 
               {/* Caption & Location Details */}
               <div className="space-y-1 text-center pt-2">
-                <h3 className="text-lg font-bold text-white">Wongai (Zee) Rankin</h3>
-                <p className="text-xs font-mono text-slate-400">
+                <h3 className="text-xl font-bold text-[#F0E5DB] font-display">Wongai (Zee) Rankin</h3>
+                <p className="text-xs font-mono text-[#c7bcab]">
                   AI Engineer • Dual Award CS (Hons) • Dean's List
                 </p>
               </div>
@@ -105,34 +105,34 @@ export const About: React.FC = () => {
 
         {/* Right Col: Narrative & Engineering Principles (7 cols) */}
         <div className="lg:col-span-7 space-y-8">
-          <div className="space-y-4 text-sm sm:text-base text-slate-300 leading-relaxed font-light">
+          <div className="space-y-4 text-sm sm:text-base text-[#c7bcab] leading-relaxed font-light">
             <p>
-              My journey in software engineering began over <strong className="text-white font-semibold">seven years ago</strong> with algorithmic problem-solving in Python and Java. Over time, that foundation expanded into deep specialization in machine learning, computer vision, and autonomous agentic systems.
+              My journey in software engineering began over <strong className="text-[#F0E5DB] font-semibold">seven years ago</strong> with algorithmic problem-solving in Python and Java. Over time, that foundation expanded into deep specialization in machine learning, computer vision, and autonomous agentic systems.
             </p>
             <p>
-              During my industry placement at <strong className="text-brand-aqua font-semibold">Asrix BHD</strong>, I engineered sequential computer vision detection loops and fine-tuned open-source local LLMs (Mistral 7B) on custom HuggingFace datasets, bridging the gap between raw model inference and high-availability production APIs.
+              During my industry placement at <strong className="text-[#FC75B4] font-semibold">Asrix BHD</strong>, I engineered sequential computer vision detection loops and fine-tuned open-source local LLMs (Mistral 7B) on custom HuggingFace datasets, bridging the gap between raw model inference and high-availability production APIs.
             </p>
             <p>
-              I believe the most impactful AI solutions are not isolated models running in Jupyter notebooks, but <strong className="text-white font-semibold">living, end-to-end architectures</strong> that orchestrate verified database tools (MCP), execute secure autonomous commerce (Google AP2), and deliver real-time insights to human users through responsive, intuitive interfaces.
+              I believe the most impactful AI solutions are not isolated models running in Jupyter notebooks, but <strong className="text-[#F0E5DB] font-semibold">living, end-to-end architectures</strong> that orchestrate verified database tools (MCP), execute secure autonomous commerce (Google AP2), and deliver real-time insights to human users through responsive, intuitive interfaces.
             </p>
           </div>
 
           {/* Principles Grid */}
           <div className="space-y-3 pt-2">
-            <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">
+            <h4 className="text-xs font-mono uppercase tracking-wider text-[#8e8472] font-semibold">
               Core Engineering Philosophy:
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {principles.map((pr, idx) => (
                 <div
                   key={idx}
-                  className="editorial-card rounded-2xl p-5 border border-white/10 bg-[#121520]/60 space-y-2 hover:border-brand-aqua/30 transition-all"
+                  className="editorial-card p-5 border border-[#474329] bg-[#1e1c15]/85 space-y-2 hover:border-[#FC75B4]/50 transition-all pixel-corners"
                 >
                   <div className="flex items-center gap-2">
                     {pr.icon}
-                    <h5 className="text-sm font-bold text-white">{pr.title}</h5>
+                    <h5 className="text-sm font-bold text-[#F0E5DB] font-display">{pr.title}</h5>
                   </div>
-                  <p className="text-xs text-slate-400 leading-relaxed font-light">
+                  <p className="text-xs text-[#c7bcab] leading-relaxed font-light">
                     {pr.desc}
                   </p>
                 </div>

@@ -55,9 +55,9 @@ export const SakugaButton: React.FC<SakugaButtonProps> = ({
 
   // Base sizing
   const sizeClasses = {
-    sm: 'px-3.5 py-1.5 text-xs gap-1.5 rounded-lg',
-    md: 'px-5 py-2.5 text-sm gap-2 rounded-xl',
-    lg: 'px-7 py-3.5 text-base gap-2.5 rounded-2xl',
+    sm: 'px-3.5 py-1.5 text-xs gap-1.5 pixel-corners-sm',
+    md: 'px-5 py-2.5 text-sm gap-2 pixel-corners',
+    lg: 'px-7 py-3.5 text-base gap-2.5 pixel-corners-lg',
   }[size];
 
   // Variants

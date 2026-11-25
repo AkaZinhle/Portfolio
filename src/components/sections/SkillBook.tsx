@@ -386,7 +386,7 @@ export const SkillBook: React.FC = () => {
       {/* Section Header */}
       <div className="space-y-4 max-w-3xl">
         <div className="flex items-center gap-2.5">
-          <span className="text-sm px-3.5 py-1.5 rounded-xl bg-[#FC75B4]/15 text-[#FC75B4] border border-[#FC75B4]/40 uppercase tracking-widest font-bold">
+          <span className="text-sm px-3.5 py-1.5 bg-[#FC75B4]/15 text-[#FC75B4] border border-[#FC75B4]/40 uppercase tracking-widest font-bold pixel-corners-sm">
             The Living Codex
           </span>
           <div className="h-[2px] w-16 bg-[#FC75B4]/30" />
@@ -628,7 +628,7 @@ export const SkillBook: React.FC = () => {
 
                   <div className="flex flex-wrap gap-1 pt-1.5 border-t border-[#C89448]">
                     {['YOLOv8', 'Mistral 7B', 'Unsloth', 'OpenCV', 'FastAPI'].map((t) => (
-                      <span key={t} className="px-2 py-0.5 rounded bg-[#DFB368]/50 text-xs font-bold text-[#3b3628]">
+                      <span key={t} className="px-2 py-0.5 bg-[#DFB368]/50 text-xs font-bold text-[#3b3628] pixel-corners-sm">
                         {t}
                       </span>
                     ))}
@@ -638,7 +638,7 @@ export const SkillBook: React.FC = () => {
                 {/* Right Page: GotGame */}
                 <div className="w-full lg:w-[46%] h-full flex flex-col justify-start pt-1 pr-1 space-y-2">
                   <div className="space-y-0.5 pb-1 border-b-2 border-[#C89448]">
-                    <span className="text-[11px] px-2 py-0.5 rounded bg-[#C89448] text-[#FAF2DE] font-bold uppercase tracking-wider">
+                    <span className="text-[11px] px-2 py-0.5 bg-[#C89448] text-[#FAF2DE] font-bold uppercase tracking-wider pixel-corners-sm">
                       Teaching & Instruction
                     </span>
                     <h3 className="text-2xl sm:text-3xl font-bold font-display text-[#3b3628]">
@@ -655,7 +655,7 @@ export const SkillBook: React.FC = () => {
 
                   <div className="flex flex-wrap gap-1.5 pt-2 border-t border-[#C89448]">
                     {['Java', 'Python', 'Data Structures', 'OOP', 'Live Debugging'].map((t) => (
-                      <span key={t} className="px-2 py-0.5 rounded bg-[#DFB368]/50 text-xs font-bold text-[#3b3628]">
+                      <span key={t} className="px-2 py-0.5 bg-[#DFB368]/50 text-xs font-bold text-[#3b3628] pixel-corners-sm">
                         {t}
                       </span>
                     ))}
@@ -674,7 +674,7 @@ export const SkillBook: React.FC = () => {
                 {/* Left Page: Degree & Honors */}
                 <div className="w-full lg:w-[46%] h-full flex flex-col justify-start pt-1 pl-1 space-y-2">
                   <div className="space-y-0.5 pb-1 border-b-2 border-[#C89448]">
-                    <span className="text-[11px] px-2 py-0.5 rounded bg-[#C89448] text-[#FAF2DE] font-bold uppercase tracking-wider">
+                    <span className="text-[11px] px-2 py-0.5 bg-[#C89448] text-[#FAF2DE] font-bold uppercase tracking-wider pixel-corners-sm">
                       Dual Award Degree
                     </span>
                     <h3 className="text-2xl sm:text-3xl font-bold font-display text-[#3b3628]">
@@ -686,17 +686,17 @@ export const SkillBook: React.FC = () => {
                   </div>
 
                   <div className="grid grid-cols-2 gap-2 text-xs text-[#3b3628]">
-                    <div className="p-2 rounded-lg bg-[#DFB368]/40 border border-[#C89448]">
+                    <div className="p-2 bg-[#DFB368]/40 border border-[#C89448] pixel-corners-sm">
                       <div className="text-[10px] text-[#756f45]">Standing</div>
                       <div className="text-xl font-bold text-[#3b3628]">CGPA 3.49</div>
                     </div>
-                    <div className="p-2 rounded-lg bg-[#DFB368]/40 border border-[#C89448]">
+                    <div className="p-2 bg-[#DFB368]/40 border border-[#C89448] pixel-corners-sm">
                       <div className="text-[10px] text-[#756f45]">Honours</div>
                       <div className="text-xs sm:text-sm font-bold text-[#3b3628]">Dean's List 2025</div>
                     </div>
                   </div>
 
-                  <div className="p-2 rounded-lg bg-[#DFB368]/40 border border-[#C89448] text-xs text-[#3b3628]">
+                  <div className="p-2 bg-[#DFB368]/40 border border-[#C89448] text-xs text-[#3b3628] pixel-corners-sm">
                     <strong>Leadership:</strong> Founding Treasurer, African Society (Oct 2024 – Ongoing)
                   </div>
                 </div>
@@ -710,28 +710,28 @@ export const SkillBook: React.FC = () => {
                   </div>
 
                   <ul className="space-y-1 text-xs text-[#3b3628] font-semibold">
-                    <li className="p-1.5 rounded bg-[#DFB368]/40 border border-[#C89448] flex items-center justify-between">
+                    <li className="p-1.5 bg-[#DFB368]/40 border border-[#C89448] flex items-center justify-between pixel-corners-sm">
                       <div>
                         <div className="font-bold text-[#3b3628]">CS50 Introduction to AI with Python</div>
                         <div className="text-[10px] text-[#756f45]">Harvard University / edX (2024)</div>
                       </div>
                       <Award className="w-4 h-4 text-[#756f45]" />
                     </li>
-                    <li className="p-1.5 rounded bg-[#DFB368]/40 border border-[#C89448] flex items-center justify-between">
+                    <li className="p-1.5 bg-[#DFB368]/40 border border-[#C89448] flex items-center justify-between pixel-corners-sm">
                       <div>
                         <div className="font-bold text-[#3b3628]">AWS Certified Cloud Practitioner</div>
                         <div className="text-[10px] text-[#756f45]">Amazon Web Services (2024)</div>
                       </div>
                       <Award className="w-4 h-4 text-[#756f45]" />
                     </li>
-                    <li className="p-1.5 rounded bg-[#DFB368]/40 border border-[#C89448] flex items-center justify-between">
+                    <li className="p-1.5 bg-[#DFB368]/40 border border-[#C89448] flex items-center justify-between pixel-corners-sm">
                       <div>
                         <div className="font-bold text-[#3b3628]">Oracle Java Foundations Certified</div>
                         <div className="text-[10px] text-[#756f45]">Oracle Corporation (2023)</div>
                       </div>
                       <Award className="w-4 h-4 text-[#756f45]" />
                     </li>
-                    <li className="p-1.5 rounded bg-[#DFB368]/40 border border-[#C89448] flex items-center justify-between">
+                    <li className="p-1.5 bg-[#DFB368]/40 border border-[#C89448] flex items-center justify-between pixel-corners-sm">
                       <div>
                         <div className="font-bold text-[#3b3628]">Salesforce Certified Trailblazer</div>
                         <div className="text-[10px] text-[#756f45]">Salesforce (2023)</div>

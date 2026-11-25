@@ -132,8 +132,8 @@ export const HoloPeelCard: React.FC<HoloPeelCardProps> = ({
       onMouseUp={handlePeelEnd}
       onTouchEnd={handlePeelEnd}
       className={`
-        relative w-[340px] sm:w-[380px] md:w-[410px] h-[520px] rounded-3xl select-none cursor-grab active:cursor-grabbing
-        transition-all duration-300 ease-out will-change-transform
+        relative w-[340px] sm:w-[380px] md:w-[410px] h-[520px] select-none cursor-grab active:cursor-grabbing
+        transition-all duration-300 ease-out will-change-transform pixel-corners-lg
       `}
       style={{
         transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(${isActive ? 1.02 : 0.94})`,
@@ -144,13 +144,13 @@ export const HoloPeelCard: React.FC<HoloPeelCardProps> = ({
       {/* 1. CARD BACKING / EXPOSED CASE STUDY PREVIEW LAYER       */}
       {/* ======================================================== */}
       <div
-        className={`absolute inset-0 rounded-3xl bg-[#181611] border-2 border-[#FC75B4]/60 p-6 flex flex-col justify-between overflow-hidden shadow-2xl transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+        className={`absolute inset-0 bg-[#181611] border-2 border-[#FC75B4]/60 p-6 flex flex-col justify-between overflow-hidden shadow-2xl transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] pixel-corners-lg ${
           isExpanded ? 'scale-100 ring-4 ring-[#FC75B4]/40 shadow-[0_0_50px_rgba(252,117,180,0.5)]' : 'scale-95'
         }`}
       >
         <div className="space-y-3">
           <div className="flex items-center justify-between pb-2 border-b border-white/10">
-            <span className="text-xs px-2.5 py-1 rounded bg-[#FC75B4]/20 text-[#FC75B4] font-semibold tracking-wider font-mono">
+            <span className="text-xs px-2.5 py-1 bg-[#FC75B4]/20 text-[#FC75B4] font-semibold tracking-wider font-mono pixel-corners-sm">
               UNCOVERED SCHEMATIC
             </span>
             <ThinkingOrb state="working" size={22} theme="cyan" />
@@ -166,7 +166,7 @@ export const HoloPeelCard: React.FC<HoloPeelCardProps> = ({
             }`}
           >
             <p className="text-sm text-[#c7bcab] leading-relaxed font-light">{project.problemStatement}</p>
-            <p className="text-xs text-[#FC75B4] font-mono leading-relaxed bg-[#FC75B4]/10 p-2.5 rounded-lg border border-[#FC75B4]/30">
+            <p className="text-xs text-[#FC75B4] font-mono leading-relaxed bg-[#FC75B4]/10 p-2.5 border border-[#FC75B4]/30 pixel-corners-sm">
               <strong className="text-[#F0E5DB]">Architecture Solution:</strong> {project.solution}
             </p>
           </div>
@@ -176,14 +176,14 @@ export const HoloPeelCard: React.FC<HoloPeelCardProps> = ({
           <div className="text-xs text-[#FC75B4] uppercase font-semibold font-mono">Decoupled Tech Stack:</div>
           <div className="flex flex-wrap gap-1.5">
             {project.technologies.slice(0, 4).map((tech) => (
-              <span key={tech} className="px-2.5 py-1 rounded bg-white/10 text-xs text-[#F0E5DB] font-mono">
+              <span key={tech} className="px-2.5 py-1 bg-white/10 text-xs text-[#F0E5DB] font-mono pixel-corners-sm">
                 {tech}
               </span>
             ))}
           </div>
           <button
             onClick={() => onPeelComplete(project)}
-            className="w-full mt-2 py-2.5 rounded-xl bg-[#FC75B4] text-[#12110d] font-bold text-sm flex items-center justify-center gap-2 hover:bg-[#ffa3d1] transition-all cursor-pointer shadow-lg active:scale-98"
+            className="w-full mt-2 py-2.5 bg-[#FC75B4] text-[#12110d] font-bold text-sm flex items-center justify-center gap-2 hover:bg-[#ffa3d1] transition-all cursor-pointer shadow-lg active:scale-98 pixel-corners-sm"
           >
             <Eye className="w-4 h-4" />
             Open Deep-Dive Case Study
@@ -195,12 +195,12 @@ export const HoloPeelCard: React.FC<HoloPeelCardProps> = ({
       {/* 2. FRONT HOLOGRAPHIC FOIL STICKER LAYER (Curls on peel)  */}
       {/* ======================================================== */}
       <div
-        className="absolute inset-0 rounded-3xl bg-[#1d1b15] border-2 overflow-hidden transition-all duration-200 ease-out flex flex-col justify-between shadow-2xl"
+        className="absolute inset-0 bg-[#1d1b15] border-2 overflow-hidden transition-all duration-200 ease-out flex flex-col justify-between shadow-2xl pixel-corners-lg"
         style={{
           borderColor: isHovered ? 'rgba(252, 117, 180, 0.7)' : 'rgba(255, 255, 255, 0.15)',
           clipPath: peelProgress > 0 
-            ? `polygon(0 0, ${100 - peelPercent}% 0, 100% ${peelPercent}%, 100% 100%, 0 100%)`
-            : 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+            ? `polygon(0 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0, ${100 - peelPercent}% 0, 100% ${peelPercent}%, 100% calc(100% - 8px), calc(100% - 4px) calc(100% - 8px), calc(100% - 4px) calc(100% - 4px), calc(100% - 8px) calc(100% - 4px), calc(100% - 8px) 100%, 8px 100%, 8px calc(100% - 4px), 4px calc(100% - 4px), 4px calc(100% - 8px), 0 calc(100% - 8px))`
+            : 'polygon(0 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0, calc(100% - 8px) 0, calc(100% - 8px) 4px, calc(100% - 4px) 4px, calc(100% - 4px) 8px, 100% 8px, 100% calc(100% - 8px), calc(100% - 4px) calc(100% - 8px), calc(100% - 4px) calc(100% - 4px), calc(100% - 8px) calc(100% - 4px), calc(100% - 8px) 100%, 8px 100%, 8px calc(100% - 4px), 4px calc(100% - 4px), 4px calc(100% - 8px), 0 calc(100% - 8px))',
           boxShadow: isHovered 
             ? '0 20px 50px -10px rgba(252, 117, 180, 0.45), 0 0 25px rgba(252, 117, 180, 0.3)' 
             : '0 10px 30px rgba(0, 0, 0, 0.75)',
@@ -216,7 +216,7 @@ export const HoloPeelCard: React.FC<HoloPeelCardProps> = ({
           />
 
           {/* Minimalist Top Identifier & Number Badge */}
-          <div className="absolute top-3.5 left-3.5 flex items-center gap-2 px-3 py-1 rounded-xl bg-[#12110d]/90 border border-white/20 backdrop-blur-md">
+          <div className="absolute top-3.5 left-3.5 flex items-center gap-2 px-3 py-1 bg-[#12110d]/90 border border-white/20 backdrop-blur-md pixel-corners-sm">
             <span className="text-sm font-bold text-[#FC75B4] font-display">{project.number}</span>
             <span className="text-[11px] text-[#F0E5DB] uppercase tracking-wider font-semibold font-mono">{project.category.split('&')[0]}</span>
           </div>
@@ -271,7 +271,7 @@ export const HoloPeelCard: React.FC<HoloPeelCardProps> = ({
 
         {/* Layer 4: Subtle Iridescent Edge Glow */}
         <div
-          className="pointer-events-none absolute inset-0 rounded-3xl"
+          className="pointer-events-none absolute inset-0 pixel-corners-lg"
           style={{
             border: '1.5px solid rgba(252, 117, 180, 0.4)',
             boxShadow: isHovered ? 'inset 0 0 20px rgba(252, 117, 180, 0.25)' : 'none',

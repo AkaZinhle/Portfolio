@@ -97,7 +97,7 @@ export const InfiniteProjectCarousel: React.FC<InfiniteProjectCarouselProps> = (
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div className="space-y-4 max-w-2xl">
           <div className="flex items-center gap-2.5">
-            <span className="text-sm px-3.5 py-1.5 rounded-xl bg-[#FC75B4]/15 text-[#FC75B4] border border-[#FC75B4]/40 uppercase tracking-widest font-bold">
+            <span className="text-sm px-3.5 py-1.5 bg-[#FC75B4]/15 text-[#FC75B4] border border-[#FC75B4]/40 uppercase tracking-widest font-bold pixel-corners-sm">
               The Engineering Foundry
             </span>
             <div className="h-[2px] w-16 bg-[#FC75B4]/30" />
@@ -113,10 +113,10 @@ export const InfiniteProjectCarousel: React.FC<InfiniteProjectCarouselProps> = (
         </div>
 
         {/* Carousel Navigation Controls (Manual only - AutoDrift completely removed) */}
-        <div className="flex items-center gap-3 p-1.5 rounded-2xl bg-[#1d1b15]/90 border border-white/10 shrink-0">
+        <div className="flex items-center gap-3 p-1.5 bg-[#1d1b15]/90 border-2 border-[#474329] shrink-0 pixel-corners">
           <button
             onClick={() => setCurrentIndex((prev) => (prev - 1 + totalProjects) % totalProjects)}
-            className="p-3 rounded-xl bg-white/5 hover:bg-[#FC75B4]/20 text-[#F0E5DB] hover:text-[#FC75B4] border border-white/10 hover:border-[#FC75B4]/40 transition-all cursor-pointer"
+            className="p-3 bg-white/5 hover:bg-[#FC75B4]/20 text-[#F0E5DB] hover:text-[#FC75B4] border border-white/10 hover:border-[#FC75B4]/40 transition-all cursor-pointer pixel-corners-sm"
             aria-label="Previous Project"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -128,7 +128,7 @@ export const InfiniteProjectCarousel: React.FC<InfiniteProjectCarouselProps> = (
 
           <button
             onClick={() => setCurrentIndex((prev) => (prev + 1) % totalProjects)}
-            className="p-3 rounded-xl bg-white/5 hover:bg-[#FC75B4]/20 text-[#F0E5DB] hover:text-[#FC75B4] border border-white/10 hover:border-[#FC75B4]/40 transition-all cursor-pointer"
+            className="p-3 bg-white/5 hover:bg-[#FC75B4]/20 text-[#F0E5DB] hover:text-[#FC75B4] border border-white/10 hover:border-[#FC75B4]/40 transition-all cursor-pointer pixel-corners-sm"
             aria-label="Next Project"
           >
             <ChevronRight className="w-5 h-5" />
@@ -222,10 +222,10 @@ export const InfiniteProjectCarousel: React.FC<InfiniteProjectCarouselProps> = (
             <button
               key={p.id}
               onClick={() => setCurrentIndex(idx)}
-              className={`transition-all duration-300 cursor-pointer ${
+              className={`transition-all duration-300 cursor-pointer pixel-corners-sm ${
                 idx === currentIndex
-                  ? 'w-10 h-3 rounded-full bg-[#FC75B4] shadow-[0_0_15px_rgba(252,117,180,0.7)]'
-                  : 'w-3 h-3 rounded-full bg-white/20 hover:bg-[#FC75B4]/50'
+                  ? 'w-10 h-3 bg-[#FC75B4] shadow-[0_0_15px_rgba(252,117,180,0.7)]'
+                  : 'w-3 h-3 bg-white/20 hover:bg-[#FC75B4]/50'
               }`}
               title={`Jump to ${p.title}`}
             />

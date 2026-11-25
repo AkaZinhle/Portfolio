@@ -17,7 +17,7 @@ export const Footer: React.FC = () => {
           {/* Col 1: Identity & Living Atmosphere */}
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#1e1c15] border border-white/10 flex items-center justify-center">
+              <div className="w-10 h-10 bg-[#1e1c15] border border-white/10 flex items-center justify-center pixel-corners-sm">
                 <ThinkingOrb state="breathing" size={24} theme="cyan" />
               </div>
               <div>
