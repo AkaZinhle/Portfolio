@@ -119,7 +119,7 @@ export const App: React.FC = () => {
         <main className="flex-1 space-y-12">
           <Hero />
           <SkillBook />
-          <SelectedWork onSelectProject={(p) => setSelectedProject(p)} />
+          <SelectedWork onSelectProject={setSelectedProject} />
           <About />
           <Contact />
         </main>

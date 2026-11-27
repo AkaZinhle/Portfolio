@@ -22,12 +22,13 @@ const HoloPeelCardComponent: React.FC<HoloPeelCardProps> = ({
   const [isPeeling, setIsPeeling] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const dragStartRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  const rectRef = useRef<DOMRect | null>(null);
 
   // 10% micro-tilt (1.0 degree max) using direct CSS custom properties for 120fps zero-render mousemove
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const card = cardRef.current;
     if (!card || isPeeling) return;
-    const rect = card.getBoundingClientRect();
+    const rect = rectRef.current || card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
@@ -47,9 +48,16 @@ const HoloPeelCardComponent: React.FC<HoloPeelCardProps> = ({
     card.style.setProperty('--holo-angle', `${holoAngle}deg`);
   }, [isPeeling]);
 
-  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    if (cardRef.current) {
+      rectRef.current = cardRef.current.getBoundingClientRect();
+    }
+  };
+
   const handleMouseLeave = () => {
     setIsHovered(false);
+    rectRef.current = null;
     if (!isPeeling) {
       const card = cardRef.current;
       if (card) {
@@ -162,7 +170,11 @@ const HoloPeelCardComponent: React.FC<HoloPeelCardProps> = ({
             <span className="text-xs px-2.5 py-1 bg-[#ff9a3c]/20 text-[#ff9a3c] border border-[#ff9a3c]/50 font-semibold tracking-wider font-mono pixel-corners-sm">
               UNCOVERED SCHEMATIC
             </span>
-            <ThinkingOrb state="working" size={22} theme="amber" />
+            {(peelProgress > 0 || isExpanded) ? (
+              <ThinkingOrb state="working" size={22} theme="amber" />
+            ) : (
+              <div className="w-[22px] h-[22px]" />
+            )}
           </div>
           <h4 className="text-2xl sm:text-3xl font-bold text-[#fbf1d4] font-display">{project.title}</h4>
           
@@ -250,29 +262,34 @@ const HoloPeelCardComponent: React.FC<HoloPeelCardProps> = ({
         {/* ======================================================== */}
         {/* FULL-CARD HOLOGRAPHIC FOIL LAYERS (Rainbow Sheen & Glare) */}
         {/* ======================================================== */}
-        {/* Layer 1: PBR Iridescent Rainbow Diffraction Sweep */}
-        <div
-          className="pointer-events-none absolute inset-0 mix-blend-color-dodge transition-opacity duration-300"
-          style={{
-            opacity: isHovered ? 0.75 : 0.45,
-            background: `linear-gradient(var(--holo-angle, 135deg), 
-              rgba(255, 154, 60, 0.35) 0%, 
-              rgba(216, 255, 122, 0.3) 20%, 
-              rgba(143, 195, 232, 0.35) 45%, 
-              rgba(251, 241, 212, 0.3) 70%, 
-              rgba(255, 111, 111, 0.3) 85%, 
-              rgba(255, 154, 60, 0.35) 100%)`,
-          }}
-        />
+        {/* Layers 1 & 2: Active ONLY on the front-most card for 60fps performance */}
+        {isActive && (
+          <>
+            {/* Layer 1: PBR Iridescent Rainbow Diffraction Sweep */}
+            <div
+              className="pointer-events-none absolute inset-0 mix-blend-color-dodge transition-opacity duration-300"
+              style={{
+                opacity: isHovered ? 0.75 : 0.45,
+                background: `linear-gradient(var(--holo-angle, 135deg), 
+                  rgba(255, 154, 60, 0.35) 0%, 
+                  rgba(216, 255, 122, 0.3) 20%, 
+                  rgba(143, 195, 232, 0.35) 45%, 
+                  rgba(251, 241, 212, 0.3) 70%, 
+                  rgba(255, 111, 111, 0.3) 85%, 
+                  rgba(255, 154, 60, 0.35) 100%)`,
+              }}
+            />
 
-        {/* Layer 2: Dynamic Radial Specular Glare following pointer */}
-        <div
-          className="pointer-events-none absolute inset-0 mix-blend-overlay transition-opacity duration-200"
-          style={{
-            opacity: isHovered ? 0.8 : 0.35,
-            background: `radial-gradient(circle 300px at var(--pointer-x, 50%) var(--pointer-y, 50%), rgba(251, 241, 212, 0.5) 0%, rgba(251, 241, 212, 0.15) 35%, transparent 70%)`,
-          }}
-        />
+            {/* Layer 2: Dynamic Radial Specular Glare following pointer */}
+            <div
+              className="pointer-events-none absolute inset-0 mix-blend-overlay transition-opacity duration-200"
+              style={{
+                opacity: isHovered ? 0.8 : 0.35,
+                background: `radial-gradient(circle 300px at var(--pointer-x, 50%) var(--pointer-y, 50%), rgba(251, 241, 212, 0.5) 0%, rgba(251, 241, 212, 0.15) 35%, transparent 70%)`,
+              }}
+            />
+          </>
+        )}
 
         {/* Layer 3: Micro-Prism Refractor Foil Pattern */}
         <div
@@ -309,11 +326,10 @@ const HoloPeelCardComponent: React.FC<HoloPeelCardProps> = ({
             e.stopPropagation();
             handlePeelStart(e);
           }}
-          className="absolute top-0 right-0 z-30 pointer-events-auto cursor-grabbing"
+          className="absolute top-0 right-0 w-full h-full z-30 pointer-events-auto cursor-grabbing will-change-transform"
           style={{
-            width: `${peelPercent}%`,
-            height: `${peelPercent}%`,
             transformOrigin: 'top right',
+            transform: `scale(${peelProgress}) translateZ(0)`,
             background: 'linear-gradient(135deg, #4a4378 0%, #272343 40%, #1b1830 70%, #0c0a2a 100%)',
             clipPath: 'polygon(0 0, 100% 0, 100% 100%)',
             boxShadow: '-6px 6px 18px rgba(12, 10, 42, 0.9)',

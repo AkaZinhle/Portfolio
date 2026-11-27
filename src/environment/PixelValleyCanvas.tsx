@@ -443,7 +443,7 @@ export const PixelValleyCanvas: React.FC<PixelValleyCanvasProps> = ({ enabled = 
     const vil = (x: number, y: number, o: Partial<Entity> = {}) =>
       V.push(ent('v', x, y, { c: pk(SH), h: pk(HR), sk: pk(SK), a: rr(0, 6.28), say: 0, fx: 50, fy: 50, ...o }));
 
-    [[50, 45, 0], [55, 46.5, 1], [46, 52.5, 1], [58, 50, 2], [59.5, 53, 0], [44.5, 57, 2], [50, 60, 1]].forEach(([x, y, v]) => {
+    [[50, 45, 0], [55, 46.5, 1], [46, 52.5, 1], [58, 50, 2], [59.5, 53, 0], [47, 57, 2], [50, 60, 1]].forEach(([x, y, v]) => {
       if (ok(x, y)) ent('h', x, y, { sp: HS[v] });
     });
 

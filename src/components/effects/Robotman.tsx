@@ -189,7 +189,14 @@ export const Robotman: React.FC = () => {
 
     window.addEventListener("resize", handleResize);
     document.fonts?.ready?.then(scan);
-    const observer = new MutationObserver(rescan);
+    const observer = new MutationObserver((mutations) => {
+      // Ignore DOM mutations that occur within carousel or explicitly ignored containers
+      const hasRelevantMutation = mutations.some((m) => {
+        const target = m.target as HTMLElement;
+        return !target.closest?.(".rm-root, [data-rm-ignore]");
+      });
+      if (hasRelevantMutation) rescan();
+    });
     observer.observe(document.body, { childList: true, subtree: true, characterData: true });
     scan();
 

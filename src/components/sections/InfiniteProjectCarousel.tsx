@@ -11,12 +11,14 @@ interface InfiniteProjectCarouselProps {
 
 export const InfiniteProjectCarousel: React.FC<InfiniteProjectCarouselProps> = ({ onSelectProject }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [dragOffset, setDragOffset] = useState<number>(0);
-  const [isDragging, setIsDragging] = useState<boolean>(false);
   const [isPeelingActive, setIsPeelingActive] = useState<boolean>(false);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const cardNodesRef = useRef<(HTMLDivElement | null)[]>([]);
   const dragStartRef = useRef<number>(0);
+  const dragOffsetRef = useRef<number>(0);
+  const isDraggingRef = useRef<boolean>(false);
+  const rafIdRef = useRef<number | null>(null);
   const totalProjects = PROJECTS.length;
 
   // DOM Anchor registration for living environment (e.g. city rooftop architecture)
@@ -34,9 +36,6 @@ export const InfiniteProjectCarousel: React.FC<InfiniteProjectCarouselProps> = (
     };
   }, []);
 
-  const dragOffsetRef = useRef<number>(0);
-  const rafIdRef = useRef<number | null>(null);
-
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -50,54 +49,123 @@ export const InfiniteProjectCarousel: React.FC<InfiniteProjectCarouselProps> = (
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [totalProjects]);
 
-  // Drag interaction handlers - Rotates carousel in 3D with RAF throttling & pointer capture
+  // Compute 3D cylinder layout properties for card at index
+  const computeCardLayout = (idx: number, currIdx: number, dragPx: number) => {
+    let baseOffset = (idx - currIdx) % totalProjects;
+    if (baseOffset > totalProjects / 2) baseOffset -= totalProjects;
+    if (baseOffset < -totalProjects / 2) baseOffset += totalProjects;
+
+    const dragProgress = dragPx / 320;
+    const continuousOffset = baseOffset + dragProgress;
+
+    const angleDeg = continuousOffset * 48;
+    const angleRad = (angleDeg * Math.PI) / 180;
+    const radius = 580; // cylinder radius in pixels
+
+    const xTranslate = Math.round(radius * Math.sin(angleRad));
+    const zTranslate = Math.round(radius * (Math.cos(angleRad) - 1));
+    const rotateY = -angleDeg;
+
+    const absOffset = Math.abs(continuousOffset);
+
+    // Smooth expanding and shrinking entry/exit animations
+    let scale = 1;
+    let opacity = 1;
+
+    if (absOffset <= 1.8) {
+      scale = Math.max(0.78, 1 - absOffset * 0.11);
+      opacity = Math.max(0.35, 1 - absOffset * 0.32);
+    } else if (absOffset <= 2.6) {
+      const shrinkProgress = Math.max(0, (2.6 - absOffset) / 0.8);
+      scale = (1 - absOffset * 0.11) * shrinkProgress;
+      opacity = (1 - absOffset * 0.32) * shrinkProgress;
+    } else {
+      scale = 0;
+      opacity = 0;
+    }
+
+    const zIndex = Math.round(100 - absOffset * 20);
+    const isInteractable = absOffset <= 2.2;
+    const isVisible = absOffset <= 2.55;
+
+    return {
+      transform: `translateX(${xTranslate}px) translateZ(${zTranslate}px) rotateY(${rotateY}deg) scale(${scale})`,
+      opacity,
+      zIndex,
+      pointerEvents: isInteractable ? ('auto' as const) : ('none' as const),
+      display: isVisible ? 'block' : 'none',
+    };
+  };
+
+  // Direct DOM style application on RAF during drag for zero-render 120 FPS
+  const applyDragTransforms = (offset: number) => {
+    PROJECTS.forEach((_, idx) => {
+      const el = cardNodesRef.current[idx];
+      if (!el) return;
+      const layout = computeCardLayout(idx, currentIndex, offset);
+      el.style.transform = layout.transform;
+      el.style.opacity = `${layout.opacity}`;
+      el.style.zIndex = `${layout.zIndex}`;
+      el.style.pointerEvents = layout.pointerEvents;
+      el.style.display = layout.display;
+    });
+  };
+
+  // Drag interaction handlers
   const handlePointerDown = (e: React.PointerEvent) => {
     if (isPeelingActive) return;
-    setIsDragging(true);
+    isDraggingRef.current = true;
     dragStartRef.current = e.clientX;
     dragOffsetRef.current = 0;
-    setDragOffset(0);
     try {
       (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-    } catch {
-      // Ignore if pointer capture not supported
-    }
+    } catch {}
+
+    // Disable CSS transition during direct drag manipulation
+    cardNodesRef.current.forEach((el) => {
+      if (el) el.style.transition = 'none';
+    });
   };
 
   const handlePointerMove = (e: React.PointerEvent) => {
-    if (isPeelingActive || !isDragging) return;
+    if (isPeelingActive || !isDraggingRef.current) return;
     const deltaX = e.clientX - dragStartRef.current;
     dragOffsetRef.current = deltaX;
 
-    // Throttle state update to screen refresh rate (16.6ms / 8.3ms) via RAF
     if (!rafIdRef.current) {
       rafIdRef.current = requestAnimationFrame(() => {
-        setDragOffset(dragOffsetRef.current);
+        applyDragTransforms(dragOffsetRef.current);
         rafIdRef.current = null;
       });
     }
   };
 
   const handlePointerUp = (e: React.PointerEvent) => {
-    if (!isDragging) return;
+    if (!isDraggingRef.current) return;
     if (rafIdRef.current) {
       cancelAnimationFrame(rafIdRef.current);
       rafIdRef.current = null;
     }
     try {
       (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
-    } catch {
-      // Ignore
-    }
-    setIsDragging(false);
+    } catch {}
+
+    isDraggingRef.current = false;
     const finalOffset = dragOffsetRef.current;
+    dragOffsetRef.current = 0;
+
+    // Restore smooth CSS transitions
+    cardNodesRef.current.forEach((el) => {
+      if (el) el.style.transition = 'transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.45s ease-out';
+    });
+
     if (finalOffset > 60) {
       setCurrentIndex((prev) => (prev - 1 + totalProjects) % totalProjects);
     } else if (finalOffset < -60) {
       setCurrentIndex((prev) => (prev + 1) % totalProjects);
+    } else {
+      applyDragTransforms(0);
     }
-    dragOffsetRef.current = 0;
-    setDragOffset(0);
   };
 
   const activeProject = PROJECTS[currentIndex];
@@ -105,6 +173,7 @@ export const InfiniteProjectCarousel: React.FC<InfiniteProjectCarouselProps> = (
   return (
     <section
       id="projects"
+      data-rm-ignore
       ref={containerRef}
       className="relative py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12 overflow-hidden select-none"
     >
@@ -161,65 +230,28 @@ export const InfiniteProjectCarousel: React.FC<InfiniteProjectCarouselProps> = (
         style={{ perspective: '1600px' }}
       >
         {PROJECTS.map((project, idx) => {
-          // Relative circular index offset from current active card
-          let baseOffset = (idx - currentIndex) % totalProjects;
-          if (baseOffset > totalProjects / 2) baseOffset -= totalProjects;
-          if (baseOffset < -totalProjects / 2) baseOffset += totalProjects;
-
-          // Drag progress rotates the carousel continuously around cylinder in 3D
-          const dragProgress = isDragging ? dragOffset / 320 : 0;
-          const continuousOffset = baseOffset + dragProgress;
-
-          // Cylindrical 3D rotation coordinates
-          const angleDeg = continuousOffset * 48;
-          const angleRad = (angleDeg * Math.PI) / 180;
-          const radius = 580; // cylinder radius in pixels
-
-          const xTranslate = Math.round(radius * Math.sin(angleRad));
-          const zTranslate = Math.round(radius * (Math.cos(angleRad) - 1));
-          const rotateY = -angleDeg;
-
-          const absOffset = Math.abs(continuousOffset);
-          const isActive = Math.abs(continuousOffset) < 0.45;
-
-          // Smooth expanding and shrinking entry/exit animations
-          let scale = 1;
-          let opacity = 1;
-
-          if (absOffset <= 1.8) {
-            scale = Math.max(0.78, 1 - absOffset * 0.11);
-            opacity = Math.max(0.35, 1 - absOffset * 0.32);
-          } else if (absOffset <= 2.6) {
-            // Gracefully shrink down to scale 0 and opacity 0 when exiting
-            const shrinkProgress = Math.max(0, (2.6 - absOffset) / 0.8);
-            scale = (1 - absOffset * 0.11) * shrinkProgress;
-            opacity = (1 - absOffset * 0.32) * shrinkProgress;
-          } else {
-            scale = 0;
-            opacity = 0;
-          }
-
-          const zIndex = Math.round(100 - absOffset * 20);
-          const isInteractable = absOffset <= 2.2;
-
-          // Performance optimization: skip DOM nodes completely for cards rotated out of view
-          if (absOffset > 2.55) return null;
+          const layout = computeCardLayout(idx, currentIndex, 0);
+          const isActive = idx === currentIndex;
 
           return (
             <div
               key={project.id}
+              ref={(el) => {
+                cardNodesRef.current[idx] = el;
+              }}
               onClick={() => {
-                if (!isDragging && Math.abs(baseOffset) > 0.45) {
+                if (!isDraggingRef.current && idx !== currentIndex) {
                   setCurrentIndex(idx);
                 }
               }}
               className="absolute will-change-transform"
               style={{
-                transform: `translateX(${xTranslate}px) translateZ(${zTranslate}px) rotateY(${rotateY}deg) scale(${scale})`,
-                opacity,
-                zIndex,
-                pointerEvents: isInteractable ? 'auto' : 'none',
-                transition: isDragging ? 'none' : 'transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.45s ease-out',
+                transform: layout.transform,
+                opacity: layout.opacity,
+                zIndex: layout.zIndex,
+                pointerEvents: layout.pointerEvents,
+                display: layout.display,
+                transition: 'transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.45s ease-out',
               }}
             >
               <HoloPeelCard

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Project } from '../../types';
-import { InfiniteProjectCarousel } from './InfiniteProjectCarousel';
+import { PixelPackShowcase } from './PixelPackShowcase';
 
 interface SelectedWorkProps {
   onSelectProject: (project: Project) => void;
 }
 
-export const SelectedWork: React.FC<SelectedWorkProps> = ({ onSelectProject }) => {
-  return <InfiniteProjectCarousel onSelectProject={onSelectProject} />;
+const SelectedWorkComponent: React.FC<SelectedWorkProps> = ({ onSelectProject }) => {
+  return <PixelPackShowcase onSelectProject={onSelectProject} />;
 };
+
+export const SelectedWork = memo(SelectedWorkComponent);
